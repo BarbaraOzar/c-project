@@ -4,7 +4,6 @@
  * Created: 2018-04-17 10:48:59
  *  Author: Dell
  */ 
-
 #include <avr/io.h>
 #include <stdio.h>
 #include <avr/interrupt.h>
@@ -138,21 +137,6 @@ static char * test_copy_seq()
 	
 	copy_seq(struct1, struct2);
 	
-<<<<<<< HEAD
-	for (j=0; j<size1; j++)
-	{
-		value1 = *array_start1;
-		value2 = *array_start2;
-			
-		array_start1++;
-		array_start2++;
-		
-		mu_assert("Elements are not equal", value1 == value2);
-		
-		*struct1->array = *struct1->beginning;
-		*struct2->array = *struct2->beginning;
-	}
-=======
 	value2 = *array2_p;
 	
 	printf("\rVal1: %d\n" , 3);
@@ -170,24 +154,23 @@ static char * test_copy_seq()
 	array2_p++;
 	
 	mu_assert("elements are not equal", 4 == value2);
->>>>>>> master
 	return 0;
 }
 
 static char *test_expand()
 {
-		printf("\r ExpandMethod is tested\n");
-		
-		int value1, size1 = 5;
-		seq_t *struct1 = seq_create(size1);
+	printf("\r ExpandMethod is tested\n");
 	
-		printf("\r Value: %d\n", value1);
-		seq_expand(struct1);
+	int value1, size1 = 5;
+	seq_t *struct1 = seq_create(size1);
 	
-		value1 = (*struct1).size;
-		printf("\r Value: %d\n", value1);
-			
-		mu_assert("\rSeq. has expanded", value1 == 55);
+	printf("\r Value: %d\n", value1);
+	seq_expand(struct1);
+	
+	value1 = (*struct1).size;
+	printf("\r Value: %d\n", value1);
+	
+	mu_assert("\rSeq. has expanded", value1 == 55);
 
 	return 0;
 }
@@ -198,14 +181,9 @@ static char * all_tests()
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
 	mu_run_test(test_seq_add_multiple);
-<<<<<<< HEAD
-	mu_run_test(test_copy_seq);*/
-	mu_run_test(test_expand);
-=======
 	mu_run_test(test_copy_seq);
 	mu_run_test(test_seq_add_beyond_capacity);
 	//mu_run_test(test_copy_seq);
->>>>>>> master
 	return 0;
 }
 
