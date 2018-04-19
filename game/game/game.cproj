@@ -81,6 +81,7 @@
     <ListValues>
       <Value>C:\Users\Dell\Desktop\CAL\stdio_driver</Value>
       <Value>C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver</Value>
+      <Value>C:\Users\Talita\OneDrive - ViaUC\VIA\CAL\stdio_driver</Value>
     </ListValues>
   </avrgcc.linker.libraries.LibrarySearchPaths>
   <avrgcc.assembler.general.IncludePaths>
@@ -128,6 +129,7 @@
     <ListValues>
       <Value>C:\Users\Dell\Desktop\CAL\stdio_driver</Value>
       <Value>C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver</Value>
+      <Value>C:\Users\Talita\OneDrive - ViaUC\VIA\CAL\stdio_driver</Value>
     </ListValues>
   </avrgcc.linker.libraries.LibrarySearchPaths>
   <avrgcc.assembler.general.IncludePaths>
@@ -177,6 +179,7 @@
     <ListValues>
       <Value>C:\Users\Dell\Desktop\CAL\stdio_driver</Value>
       <Value>C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver</Value>
+      <Value>C:\Users\Talita\OneDrive - ViaUC\VIA\CAL\stdio_driver</Value>
     </ListValues>
   </avrgcc.linker.libraries.LibrarySearchPaths>
   <avrgcc.assembler.general.IncludePaths>

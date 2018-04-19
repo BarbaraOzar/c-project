@@ -35,7 +35,7 @@ static char * test_seq_add_zero ()
 {
 	int size = 5, value, *array_start;
 	seq_t* item = seq_create(size);
-	seq_add_to(*item, 0);
+	seq_add_to(item, 0);
 	
 	array_start = (*item).beginning;
 	value = *array_start;
@@ -48,7 +48,7 @@ static char * test_seq_add_one ()
 {
 	int size = 5,  value, *array_start;
 	seq_t* item = seq_create(size);
-	seq_add_to(*item, 1);
+	seq_add_to(item, 1);
 		
 	array_start = (*item).beginning;
 	value = *array_start;
@@ -61,9 +61,9 @@ static char * test_seq_add_multiple ()
 {
 	int size = 5, i, value, *array_start, control;
 	seq_t* item = seq_create(size);
-	seq_add_to(*item, 1);
-	seq_add_to(*item, 2);
-	seq_add_to(*item, 3);
+	seq_add_to(item, 1);
+	seq_add_to(item, 2);
+	seq_add_to(item, 3);
 		
 	array_start = (*item).beginning;
 	control = 1;
@@ -76,6 +76,31 @@ static char * test_seq_add_multiple ()
 		control++;
 	}
 		
+	return 0;
+}
+
+static char * test_seq_add_beyond_capacity ()
+{
+	int size = 5, i, value, *array_start, control;
+	seq_t* item = seq_create(size);
+	seq_add_to(item, 1);
+	seq_add_to(item, 2);
+	seq_add_to(item, 3);
+	seq_add_to(item, 4);
+	seq_add_to(item, 5);
+	seq_add_to(item, 6);
+	
+	array_start = (*item).beginning;
+	control = 1;
+	
+	for(i = 0; i < 6; i++)
+	{
+		value = *array_start;
+		mu_assert("element != expected", value == control);
+		array_start++;
+		control++;
+	}
+	
 	return 0;
 }
 	
@@ -128,7 +153,8 @@ static char * all_tests()
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
 	mu_run_test(test_seq_add_multiple);*/
-	mu_run_test(test_copy_seq);
+	mu_run_test(test_seq_add_beyond_capacity);
+	//mu_run_test(test_copy_seq);
 	return 0;
 }
 

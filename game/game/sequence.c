@@ -22,18 +22,19 @@ seq_t* seq_create(int size)
 	new_seq->array = calloc(size, sizeof(int));
 	new_seq->beginning = (*new_seq).array;
 	new_seq->size = 0;
+	new_seq->max_size = size;
 	return new_seq;
 }
 
-void seq_add_to(seq_t self, int value) 
+void seq_add_to(seq_t * self, int value) 
 {
-	  if (self.size  == self.max_size) {
+	  if (self->size  == self->max_size) {
 		seq_expand(&self);
 	}
 	
-	*(self.array) = value;
-	self.array++;
-	self.size++;
+	*(self->array) = value;
+	self->array++;
+	self->size++;
 }
 
 void seq_display(seq_t* self)
@@ -56,7 +57,7 @@ void output_value(int value)
 }
 
 seq_t* copy_seq(seq_t *self, seq_t *new_self){
-	
+	printf("\r I am in Copy seq\n");
 	int i;
 	int *arrayInitial_p = self->array;  
 	int *array2_p = new_self->array;
