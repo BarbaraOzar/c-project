@@ -28,7 +28,7 @@ seq_t* seq_create(int size)
 void seq_add_to(seq_t self, int value) 
 {
 	if (self.size  == self.max_size) {
-		seq_expand(self);
+		seq_expand(&self);
 	}
 	
 	*(self.array) = value;
@@ -57,8 +57,10 @@ void output_value(int value)
 
 seq_t* copy_seq(seq_t *self, seq_t *new_self){
 	int i;
-	int *arrayInitial_p = self->array;
+	int *arrayInitial_p = self->array;  
 	int *array2_p = new_self->array;
+	
+	printf("\r Size equal to: %d\n", (*self).size);
 	
 	for(i = 0; i <= self->size; i++)
 	{
