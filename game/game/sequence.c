@@ -25,6 +25,11 @@ seq_t* seq_create(int size)
 	return new_seq;
 }
 
+void seq_add_to(seq_t self, int value) 
+{
+	*(self).array = value;
+	(self).array += 1;
+
 void seq_display(seq_t* self)
 {
 	int i;

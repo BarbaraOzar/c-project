@@ -19,8 +19,8 @@ seq_t* seq_create(int size);
 void seq_destroy(seq_t self);
 
 void seq_add_to(seq_t self, int value);
-void seq_display(seq_t* self);
-
+void seq_display(seq_t * self);
+void seq_expand(seq_t self);
 
 
 
