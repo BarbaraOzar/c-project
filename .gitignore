@@ -13,7 +13,6 @@
 *.lss
 *.map
 *.srec
-*.cproj
 *.d
 *.o
 *.mk
