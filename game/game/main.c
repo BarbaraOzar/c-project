@@ -10,10 +10,25 @@
 #include <stdio.h>
 #include "atmega2560_drivers.h"
 
+void ports_configuration();
 
-#ifdef TEST
+#ifndef TEST
 int main(void)
 {
+	ports_configuration();
+	int i, value = 2;
+	
+	seq_t seq = seq_create(5);
+	
+	
+	for(i = 0; i <= 5; i++)
+	{
+		seq.array = value;
+		seq.array++;
+		value+=2;
+	}
+	
+	
 	init_stdio(0, 10000000L);
 	sei();
 	
@@ -25,3 +40,9 @@ int main(void)
 }
 #endif
 
+void ports_configuration() 
+{
+	DDRA = 0xff;
+	DDRB = 0x00;
+	PORTA = 0xff;
+}

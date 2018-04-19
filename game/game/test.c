@@ -42,7 +42,7 @@ static char * all_tests()
 	return 0;
 }
 
-#ifndef TEST
+#ifdef TEST
 int main()
 {
 	init_stdio(0, 10000000L);
