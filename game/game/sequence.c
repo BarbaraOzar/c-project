@@ -44,6 +44,16 @@ int get_max_size(seq_t self)
 	return self->max_size;
 }
 
+void increment_size(seq_t self)
+{
+	self->size++;
+}
+
+void reset_array_p(seq_t self)
+{
+	self->array = self->beginning;
+}
+
 seq_t seq_create(int size)
 {
 	seq_t new_seq = (seq_t)malloc(sizeof(struct seq));
