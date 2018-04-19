@@ -31,6 +31,11 @@ static char * test_seq_create()
 	return 0;
 }
 
+static char * test_seq_add_zero () 
+{
+	
+}
+
 static char * all_tests()
 {
 	mu_run_test(test_seq_create);
