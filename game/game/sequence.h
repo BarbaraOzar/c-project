@@ -23,5 +23,4 @@ void seq_display(seq_t * self);
 void seq_expand(seq_t self);
 
 
-
 #endif /* SEQUENCE_H_ */
