@@ -20,3 +20,9 @@ seq_t* seq_create(int size)
 	new_seq->beginning = (*new_seq).array;
 	return new_seq;
 }
+
+void seq_add_to(seq_t self, int value) 
+{
+	*(self).array = value;
+	(self).array += 1;
+}

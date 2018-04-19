@@ -11,7 +11,7 @@
 #include "atmega2560_drivers.h"
 
 
-#ifdef TEST
+#ifndef TEST
 int main(void)
 {
 	init_stdio(0, 10000000L);
