@@ -87,7 +87,7 @@ static char * test_seq_add_multiple ()
 static char * test_seq_add_beyond_capacity ()
 {
 	int size = 5, i, value, *array_start, control;
-	seq_t* item = seq_create(size);
+	seq_t item = seq_create(size);
 	seq_add_to(item, 1);
 	seq_add_to(item, 2);
 	seq_add_to(item, 3);
@@ -95,7 +95,7 @@ static char * test_seq_add_beyond_capacity ()
 	seq_add_to(item, 5);
 	seq_add_to(item, 6);
 	
-	array_start = (*item).beginning;
+	array_start = get_beginning(item);
 	control = 1;
 	
 	for(i = 0; i < 6; i++)
