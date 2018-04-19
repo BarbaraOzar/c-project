@@ -48,13 +48,14 @@ void output_value(int value)
 seq_t* seq_expand(seq_t *self)
 {
 	int i;
-	seq_t *new_seq;  //variable creation    /* seq_t *new_seq= malloc(sizeof(seq_t)); //allocates memory for the expanded struct */
-
+	seq_t *new_seq;  //variable creation    
+	
 	int new_size = *self->size + 50 ; // access size field of self
 	new_seq = seq_create(new_size);
 	
 	copy_seq(self, new_seq);
 	/*new_seq->array = calloc(new_size, sizeof(int)); // i reserve new_size spaces of sizeOf(int) each of the new_size space 
+	/* seq_t *new_seq= malloc(sizeof(seq_t)); //allocates memory for the expanded struct 
 	new_seq->beginning = (*new_seq).array;
 	new_seq->size = 0; //cuz' you are not able to check the size of the array with pointer , must keep track of size*/
 	
