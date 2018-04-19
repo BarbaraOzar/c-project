@@ -31,7 +31,6 @@ static char * test_seq_create()
 	return 0;
 }
 
-<<<<<<< HEAD
 static char * test_seq_add_zero () 
 {
 	int size = 5, i, value, *array_start;
@@ -41,7 +40,45 @@ static char * test_seq_add_zero ()
 	array_start = (*item).beginning;
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
-=======
+	return 0;
+}
+	
+
+static char * test_seq_add_one ()
+{
+	int size = 5, i, value, *array_start;
+	seq_t* item = seq_create(size);
+	seq_add_to(*item, 1);
+		
+	array_start = (*item).beginning;
+	value = *array_start;
+	mu_assert("element != 1", value == 1);
+		
+	return 0;
+}
+
+static char * test_seq_add_multiple ()
+{
+	int size = 5, i, value, *array_start, control;
+	seq_t* item = seq_create(size);
+	seq_add_to(*item, 1);
+	seq_add_to(*item, 2);
+	seq_add_to(*item, 3);
+		
+	array_start = (*item).beginning;
+	control = 1;
+		
+	for(i = 0; i < 3; i++)
+	{
+		value = *array_start;
+		mu_assert("element != expected", value == control);
+		array_start++;
+		control++;
+	}
+		
+	return 0;
+}
+	
 static char * copy_seq(){
 	int size1 = 5, size2 =10;
 	int  i , j, value1, value2;
@@ -52,7 +89,6 @@ static char * copy_seq(){
 	
 	array_start1 = (*struct1).array;
 	array_start2 = (*struct2).array;
->>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
 	
 	for(i = 0; i < size1; i++)
 	{
@@ -72,64 +108,16 @@ static char * copy_seq(){
 		
 		mu_assert("elements are equal", value1 == value2);
 	}
-	
-		return 0;
-
-}
-	
-
-static char * test_seq_add_zero () 
-{
-	int size = 5, i, value, *array_start;
-	seq_t* item = seq_create(size);
-	seq_add_to(*item, 1);
-	
-	array_start = (*item).beginning;
-	value = *array_start;
-	mu_assert("element != 1", value == 1);
-	
 	return 0;
 }
-
-static char * test_seq_add_multiple ()
-{
-	int size = 5, i, value, *array_start, control;
-	seq_t* item = seq_create(size);
-	seq_add_to(*item, 1);
-	seq_add_to(*item, 2);
-	seq_add_to(*item, 3);
-	
-	array_start = (*item).beginning;
-	control = 1;
-	
-	for(i = 0; i < 3; i++)
-	{
-		value = *array_start;
-		mu_assert("element != expected", value == control);
-		array_start++;
-		control++;
-	}
-	
-	return 0;
-}
-=======
-	
-}
-
-
-
->>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
 
 static char * all_tests()
 {
 	mu_run_test(test_seq_create);
-<<<<<<< HEAD
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
 	mu_run_test(test_seq_add_multiple);
-=======
 	mu_run_test(copy_seq);
->>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
 	return 0;
 }
 
