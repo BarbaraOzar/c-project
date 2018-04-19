@@ -107,14 +107,11 @@ static char * test_copy_seq()
 	{
 		value1 = *array_start1;
 		value2 = *array_start2;
-		
-		printf("\rVal1: %d\n" , value1);
-		printf("\rVal2: %d\n" , value2);
-		
+			
 		array_start1++;
 		array_start2++;
 		
-		mu_assert("elements are not equal", value1 == value2);
+		mu_assert("Elements are not equal", value1 == value2);
 		
 		*struct1->array = *struct1->beginning;
 		*struct2->array = *struct2->beginning;
@@ -124,20 +121,18 @@ static char * test_copy_seq()
 
 static char *test_expand()
 {
-		printf("\rIm in the expandMethod\n");
-		int size1 = 5;
-		int value1;
-		//int *array_start1;
+		printf("\r ExpandMethod is tested\n");
 		
+		int value1, size1 = 5;
 		seq_t *struct1 = seq_create(size1);
 	
+		printf("\r Value: %d\n", value1);
 		seq_expand(struct1);
-		
-		value1 = struct1->size;
-		
-		mu_assert("\rSeq. Expanded", value1 == 55);
-		
-		//*struct1->array = *struct1->beginning;
+	
+		value1 = (*struct1).size;
+		printf("\r Value: %d\n", value1);
+			
+		mu_assert("\rSeq. has expanded", value1 == 55);
 
 	return 0;
 }
@@ -147,8 +142,9 @@ static char * all_tests()
 	/*mu_run_test(test_seq_create);
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
-	mu_run_test(test_seq_add_multiple);*/
-	mu_run_test(test_copy_seq);
+	mu_run_test(test_seq_add_multiple);
+	mu_run_test(test_copy_seq);*/
+	mu_run_test(test_expand);
 	return 0;
 }
 

@@ -69,8 +69,6 @@ Discarded input sections
                 0x00000000       0x1c sequence.o
  .text.seq_display
                 0x00000000       0x64 sequence.o
- .text.seq_expand
-                0x00000000       0x2c sequence.o
  .text.seq_add_to
                 0x00000000       0x5c sequence.o
  .text          0x00000000        0x0 test.o
@@ -315,7 +313,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1324
+.text           0x00000000     0x12f8
  *(.vectors)
  .vectors       0x00000000       0xe4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -431,93 +429,96 @@ END GROUP
  .text.copy_seq
                 0x00000158       0xc2 sequence.o
                 0x00000158                copy_seq
- .text.main     0x0000021a      0x154 test.o
-                0x0000021a                main
+ .text.seq_expand
+                0x0000021a       0x62 sequence.o
+                0x0000021a                seq_expand
+ .text.main     0x0000027c       0xc6 test.o
+                0x0000027c                main
  .text.usart_getchar
-                0x0000036e       0x26 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+                0x00000342       0x26 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
  .text.usart_putchar
-                0x00000394       0x12 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+                0x00000368       0x12 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
  .text.init_stdio
-                0x000003a6       0x98 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
-                0x000003a6                init_stdio
+                0x0000037a       0x98 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+                0x0000037a                init_stdio
  .text.buffer_init
-                0x0000043e       0x12 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
-                0x0000043e                buffer_init
+                0x00000412       0x12 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+                0x00000412                buffer_init
  .text.buffer_get_item
-                0x00000450       0x4e C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
-                0x00000450                buffer_get_item
+                0x00000424       0x4e C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+                0x00000424                buffer_get_item
  .text.buffer_put_item
-                0x0000049e       0x46 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
-                0x0000049e                buffer_put_item
+                0x00000472       0x46 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+                0x00000472                buffer_put_item
  .text.serial_new_instance
-                0x000004e4      0x104 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x000004e4                serial_new_instance
+                0x000004b8      0x104 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x000004b8                serial_new_instance
  .text.serial_send_byte
-                0x000005e8       0x30 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x000005e8                serial_send_byte
+                0x000005bc       0x30 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x000005bc                serial_send_byte
  .text.__vector_25
-                0x00000618       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x00000618                __vector_25
+                0x000005ec       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x000005ec                __vector_25
  .text.__vector_26
-                0x0000069a       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x0000069a                __vector_26
+                0x0000066e       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x0000066e                __vector_26
  .text.__vector_36
-                0x00000730       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x00000730                __vector_36
+                0x00000704       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x00000704                __vector_36
  .text.__vector_37
-                0x000007b2       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x000007b2                __vector_37
+                0x00000786       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x00000786                __vector_37
  .text.__vector_51
-                0x00000848       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x00000848                __vector_51
+                0x0000081c       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x0000081c                __vector_51
  .text.__vector_52
-                0x000008ca       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x000008ca                __vector_52
+                0x0000089e       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x0000089e                __vector_52
  .text.__vector_54
-                0x00000960       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x00000960                __vector_54
+                0x00000934       0x82 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x00000934                __vector_54
  .text.__vector_55
-                0x000009e2       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
-                0x000009e2                __vector_55
+                0x000009b6       0x96 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x000009b6                __vector_55
  .text.libgcc.div
-                0x00000a78       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodsi4.o)
-                0x00000a78                __udivmodsi4
+                0x00000a4c       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodsi4.o)
+                0x00000a4c                __udivmodsi4
  .text.avr-libc
-                0x00000abc       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(calloc.o)
-                0x00000abc                calloc
+                0x00000a90       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(calloc.o)
+                0x00000a90                calloc
  .text.avr-libc
-                0x00000af0      0x242 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
-                0x00000af0                malloc
-                0x00000c20                free
+                0x00000ac4      0x242 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
+                0x00000ac4                malloc
+                0x00000bf4                free
  .text.avr-libc
-                0x00000d32        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(memset.o)
-                0x00000d32                memset
+                0x00000d06        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(memset.o)
+                0x00000d06                memset
  .text.avr-libc
-                0x00000d40       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(printf.o)
-                0x00000d40                printf
+                0x00000d14       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(printf.o)
+                0x00000d14                printf
  .text.avr-libc
-                0x00000d66       0x60 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(puts.o)
-                0x00000d66                puts
+                0x00000d3a       0x60 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(puts.o)
+                0x00000d3a                puts
  .text.avr-libc
-                0x00000dc6      0x3fa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(vfprintf_std.o)
-                0x00000dc6                vfprintf
+                0x00000d9a      0x3fa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(vfprintf_std.o)
+                0x00000d9a                vfprintf
  .text.avr-libc
-                0x000011c0       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
-                0x000011c0                strnlen_P
+                0x00001194       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
+                0x00001194                strnlen_P
  .text.avr-libc
-                0x000011d6       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strnlen.o)
-                0x000011d6                strnlen
+                0x000011aa       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strnlen.o)
+                0x000011aa                strnlen
  .text.avr-libc
-                0x000011ec       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(fputc.o)
-                0x000011ec                fputc
+                0x000011c0       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(fputc.o)
+                0x000011c0                fputc
  .text.avr-libc
-                0x00001264       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
-                0x00001264                __ultoa_invert
-                0x00001320                . = ALIGN (0x2)
+                0x00001238       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
+                0x00001238                __ultoa_invert
+                0x000012f4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001320        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
-                0x00001320                _exit
-                0x00001320                exit
+ .fini9         0x000012f4        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+                0x000012f4                _exit
+                0x000012f4                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -536,11 +537,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001320        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+ .fini0         0x000012f4        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001324                _etext = .
+                0x000012f8                _etext = .
 
-.data           0x00800200       0xa0 load address 0x00001324
+.data           0x00800200       0xae load address 0x000012f8
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800200        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
@@ -557,46 +558,45 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0080021c       0x15 sequence.o
+                0x0080021c       0x2b sequence.o
  .rodata.str1.1
-                0x00800231       0x6e test.o
+                0x00800247       0x67 test.o
  *(.gnu.linkonce.r*)
-                0x008002a0                . = ALIGN (0x2)
- *fill*         0x0080029f        0x1 
-                0x008002a0                _edata = .
-                0x008002a0                PROVIDE (__data_end, .)
+                0x008002ae                . = ALIGN (0x2)
+                0x008002ae                _edata = .
+                0x008002ae                PROVIDE (__data_end, .)
 
-.bss            0x008002a0      0x11c
-                0x008002a0                PROVIDE (__bss_start, .)
+.bss            0x008002ae      0x11c
+                0x008002ae                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.tests_run
-                0x008002a0        0x2 test.o
-                0x008002a0                tests_run
+                0x008002ae        0x2 test.o
+                0x008002ae                tests_run
  .bss._com_tx_buffer
-                0x008002a2       0x83 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+                0x008002b0       0x83 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
  .bss._com_rx_buffer
-                0x00800325       0x83 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+                0x00800333       0x83 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
  .bss._com_serial_instance
-                0x008003a8        0x2 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+                0x008003b6        0x2 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
  .bss._ser_handle
-                0x008003aa        0x8 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x008003b8        0x8 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
  *(COMMON)
- COMMON         0x008003b2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
-                0x008003b2                __brkval
-                0x008003b4                __flp
- COMMON         0x008003b6        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(iob.o)
-                0x008003b6                __iob
-                0x008003bc                PROVIDE (__bss_end, .)
-                0x00001324                __data_load_start = LOADADDR (.data)
-                0x000013c4                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008003c0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(malloc.o)
+                0x008003c0                __brkval
+                0x008003c2                __flp
+ COMMON         0x008003c4        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(iob.o)
+                0x008003c4                __iob
+                0x008003ca                PROVIDE (__bss_end, .)
+                0x000012f8                __data_load_start = LOADADDR (.data)
+                0x000013a6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008003bc        0x0
+.noinit         0x008003ca        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008003bc                _end = .
-                0x008003bc                PROVIDE (__heap_start, .)
+                0x008003ca                _end = .
+                0x008003ca                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -689,62 +689,62 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1e7e
+.debug_info     0x00000000     0x1ef2
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc      0x3c2 sequence.o
- .debug_info    0x00000f7e      0x23d test.o
- .debug_info    0x000011bb      0x42d C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_info    0x000015e8      0x210 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_info    0x000017f8      0x686 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_info    0x00000bbc      0x3e8 sequence.o
+ .debug_info    0x00000fa4      0x28b test.o
+ .debug_info    0x0000122f      0x42d C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_info    0x0000165c      0x210 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_info    0x0000186c      0x686 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
 
-.debug_abbrev   0x00000000     0x1234
+.debug_abbrev   0x00000000     0x1279
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0xb1a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_abbrev  0x00000b1a      0x191 sequence.o
- .debug_abbrev  0x00000cab      0x110 test.o
- .debug_abbrev  0x00000dbb      0x1ad C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_abbrev  0x00000f68       0xde C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_abbrev  0x00001046      0x1ee C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_abbrev  0x00000cab      0x155 test.o
+ .debug_abbrev  0x00000e00      0x1ad C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_abbrev  0x00000fad       0xde C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_abbrev  0x0000108b      0x1ee C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
 
-.debug_line     0x00000000      0xb8d
+.debug_line     0x00000000      0xbd7
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1f9 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_line    0x000001f9      0x25b sequence.o
- .debug_line    0x00000454       0xf1 test.o
- .debug_line    0x00000545      0x144 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_line    0x00000689      0x193 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_line    0x0000081c      0x371 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_line    0x000001f9      0x273 sequence.o
+ .debug_line    0x0000046c      0x123 test.o
+ .debug_line    0x0000058f      0x144 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_line    0x000006d3      0x193 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_line    0x00000866      0x371 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
 
-.debug_frame    0x00000000      0x654
+.debug_frame    0x00000000      0x684
  *(.debug_frame)
- .debug_frame   0x00000000      0x110 sequence.o
- .debug_frame   0x00000110       0x68 test.o
- .debug_frame   0x00000178       0xa0 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_frame   0x00000218       0x74 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_frame   0x0000028c      0x3c8 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_frame   0x00000000      0x140 sequence.o
+ .debug_frame   0x00000140       0x68 test.o
+ .debug_frame   0x000001a8       0xa0 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_frame   0x00000248       0x74 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_frame   0x000002bc      0x3c8 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
 
-.debug_str      0x00000000      0xa93
+.debug_str      0x00000000      0xa7a
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_str     0x000003e6      0x22f sequence.o
+ .debug_str     0x000003e6      0x238 sequence.o
                                 0x281 (size before relaxing)
- .debug_str     0x00000615       0x86 test.o
-                                0x20b (size before relaxing)
- .debug_str     0x0000069b      0x22d C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_str     0x0000061e       0x6f test.o
+                                0x20d (size before relaxing)
+ .debug_str     0x0000068d      0x222 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
                                 0x35e (size before relaxing)
- .debug_str     0x000008c8       0x53 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_str     0x000008af       0x53 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
                                 0x22b (size before relaxing)
- .debug_str     0x0000091b      0x178 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_str     0x00000902      0x178 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
                                 0x454 (size before relaxing)
 
-.debug_loc      0x00000000     0x163e
+.debug_loc      0x00000000     0x16e9
  *(.debug_loc)
- .debug_loc     0x00000000      0x563 sequence.o
- .debug_loc     0x00000563      0x133 test.o
- .debug_loc     0x00000696      0x220 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_loc     0x000008b6       0xe2 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_loc     0x00000998      0xca6 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_loc     0x00000000      0x5ce sequence.o
+ .debug_loc     0x000005ce      0x173 test.o
+ .debug_loc     0x00000741      0x220 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_loc     0x00000961       0xe2 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_loc     0x00000a43      0xca6 C:\Users\winpc\Desktop\CAL\CALcode\0_C_PROGRAMMING\stdio_driver\libatmega2560_drivers.a(serial.o)
 
 .debug_macinfo
  *(.debug_macinfo)
