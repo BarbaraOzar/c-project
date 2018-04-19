@@ -26,11 +26,18 @@ seq_t* seq_create(int size)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a851e488c1251b595ffb40fe1cf787e42cedd9e3
 void seq_add_to(seq_t self, int value) 
 {
 	*(self).array = value;
 	(self).array += 1;
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> a851e488c1251b595ffb40fe1cf787e42cedd9e3
 void seq_display(seq_t* self)
 {
 	int i;
@@ -48,5 +55,8 @@ void output_value(int value)
 	PORTA = ~value;
 	_delay_ms(1000);
 	PORTA = 0xff;
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> a851e488c1251b595ffb40fe1cf787e42cedd9e3
 }
