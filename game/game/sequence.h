@@ -12,6 +12,7 @@
 typedef struct {
 	int *array;
 	int *beginning;
+	int max_size;
 	int size;
 } seq_t;
 

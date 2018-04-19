@@ -19,6 +19,7 @@ void output_value(int value);
 seq_t* seq_create(int size)
 {
 	seq_t *new_seq = malloc(sizeof(seq_t));
+	new_seq->max_size = size;
 	new_seq->array = calloc(size, sizeof(int));
 	new_seq->beginning = (*new_seq).array;
 	new_seq->size = 0;
@@ -27,11 +28,10 @@ seq_t* seq_create(int size)
 
 void seq_add_to(seq_t self, int value) 
 {
-	int count;
-	count = self.array - self.beginning;
-	if(count < self.size) {
+	if(self.size < self.max_size) {
 		*(self.array) = value;
 		self.array += 1;
+		self.size += 1;
 	}
 	else {
 		seq_expand(self);
@@ -55,8 +55,7 @@ void seq_expand(seq_t self) {
 }
 
 void seq_destroy(seq_t self) {
-	free(self->array);
-	free(self);
+	
 }
 
 void output_value(int value)
