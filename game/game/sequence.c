@@ -28,13 +28,13 @@ seq_t* seq_create(int size)
 
 void seq_add_to(seq_t self, int value) 
 {
-	if(self.size => self.max_size) {
+	if(self.size = self.max_size) {
 		seq_expand(self);
 	}
 	
 	*(self.array) = value;
-	self.array += 1;
-	self.size += 1;
+	self.array = self.array + 1;
+	self.size++;
 }
 
 void seq_display(seq_t* self)

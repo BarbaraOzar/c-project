@@ -33,11 +33,11 @@ static char * test_seq_create()
 
 static char * test_seq_add_zero () 
 {
-	int size = 10, i, value, *array_start;
+	int size = 5, i, value, *array_start;
 	seq_t* item = seq_create(size);
 	seq_add_to(*item, 0);
 	
-	array_start = (*item).array;
+	array_start = (*item).beginning;
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
 	
@@ -46,13 +46,35 @@ static char * test_seq_add_zero ()
 
 static char * test_seq_add_one ()
 {
-	int size = 10, i, value, *array_start;
+	int size = 5, i, value, *array_start;
 	seq_t* item = seq_create(size);
 	seq_add_to(*item, 1);
 	
-	array_start = (*item).array;
+	array_start = (*item).beginning;
 	value = *array_start;
 	mu_assert("element != 1", value == 1);
+	
+	return 0;
+}
+
+static char * test_seq_add_multiple ()
+{
+	int size = 5, i, value, *array_start, control;
+	seq_t* item = seq_create(size);
+	seq_add_to(*item, 1);
+	seq_add_to(*item, 2);
+	seq_add_to(*item, 3);
+	
+	array_start = (*item).beginning;
+	control = 1;
+	
+	for(i = 0; i < 3; i++)
+	{
+		value = *array_start;
+		mu_assert("element != expected", value == control);
+		array_start++;
+		control++;
+	}
 	
 	return 0;
 }
@@ -62,6 +84,7 @@ static char * all_tests()
 	mu_run_test(test_seq_create);
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
+	mu_run_test(test_seq_add_multiple);
 	return 0;
 }
 
