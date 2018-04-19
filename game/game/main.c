@@ -39,6 +39,7 @@ int main(void)
 	
 	init_stdio(0, 10000000L);
 	sei();
+	
 	printf("I'm in the wrong main");
 	while(1)
 	{

@@ -31,6 +31,7 @@ static char * test_seq_create()
 	return 0;
 }
 
+<<<<<<< HEAD
 static char * test_seq_add_zero () 
 {
 	int size = 5, i, value, *array_start;
@@ -40,12 +41,46 @@ static char * test_seq_add_zero ()
 	array_start = (*item).beginning;
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
+=======
+static char * copy_seq(){
+	int size1 = 5, size2 =10;
+	int  i , j, value1, value2;
+	int *array_start1, *array_start2;
+		
+	seq_t *struct1 = seq_create(size1);
+	seq_t *struct2 = seq_create(size2);
 	
-	return 0;
-}
+	array_start1 = (*struct1).array;
+	array_start2 = (*struct2).array;
+>>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
+	
+	for(i = 0; i < size1; i++)
+	{
+		*array_start1 = i;
+		 array_start1++;
+	}
+		
+	copy_seq(struct1, struct2);
+	
+	for (j=0; j<size1; j++)
+	{
+		value1 = *array_start1;
+		value2 = *array_start2;
+		
+		array_start1++;
+		array_start2++;
+		
+		mu_assert("elements are equal", value1 == value2);
+	}
+	
+		return 0;
 
-static char * test_seq_add_one ()
+}
+	
+
+static char * test_seq_add_zero () 
 {
+<<<<<<< HEAD
 	int size = 5, i, value, *array_start;
 	seq_t* item = seq_create(size);
 	seq_add_to(*item, 1);
@@ -78,13 +113,24 @@ static char * test_seq_add_multiple ()
 	
 	return 0;
 }
+=======
+	
+}
+
+
+
+>>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
 
 static char * all_tests()
 {
 	mu_run_test(test_seq_create);
+<<<<<<< HEAD
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
 	mu_run_test(test_seq_add_multiple);
+=======
+	mu_run_test(copy_seq);
+>>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
 	return 0;
 }
 
