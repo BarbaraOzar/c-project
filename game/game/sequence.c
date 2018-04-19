@@ -60,18 +60,20 @@ seq_t seq_create(int size)
 	new_seq->array = calloc(size, sizeof(int));
 	new_seq->beginning = new_seq->array;
 	new_seq->size = 0;
+	new_seq->max_size = size;
 	return new_seq;
 }
 
 void seq_add_to(seq_t self, int value) 
 {
-	  if (self->size  == self->max_size) {
-		seq_expand(self);
+	if (self->size == self->max_size) {
+		self = seq_expand(self);
 	}
-	
+	reset_array_p(self);
+	self->array += self->size;
 	*(self->array) = value;
-	self->array++;
-	self->size++;
+	increment_size(self);
+	reset_array_p(self);
 }
 
 void seq_display(seq_t self)
@@ -96,25 +98,26 @@ void output_value(int value)
 seq_t copy_seq(seq_t self, seq_t new_self)
 {
 	int i;
-	int *arrayInitial_p = self->array;  
-	int *array2_p = new_self->array;
+	int *array_p = self->array;  
+	int *new_array_p = new_self->array;
 	
-	for(i = 0; i <= self->size; i++)
+	reset_array_p(self);
+	reset_array_p(new_self);
+	
+	for(i = 0; i < self->size; i++)
 	{
-		*array2_p = *arrayInitial_p;
-		new_self->size++;	//cuz' you are not able to check the size of the array with pointer , must keep track of size
-		arrayInitial_p++;
-		array2_p++;
+		*new_array_p = *array_p;
+		increment_size(new_self);
+		array_p++;
+		new_array_p++;
 	}
 	
-	*self->array = *self->beginning; //when reusing this array, the pointer is reseted to point to the beginning
-	*new_self->array = *new_self->beginning;
+	reset_array_p(new_self);
 	
 	free(self->array);
 	free(self);
 	
 	return new_self;
-
 }
 
 seq_t seq_expand(seq_t self)

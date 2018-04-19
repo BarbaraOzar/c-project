@@ -45,12 +45,15 @@ static char * test_seq_add_zero ()
 
 static char * test_seq_add_one ()
 {
-	int size = 5,  value, *array_start;
+	int size = 5, value, *array_start;
 	seq_t item = seq_create(size);
 	seq_add_to(item, 1);
-		
+	
 	array_start = get_beginning(item);
 	value = *array_start;
+	
+	printf("\rvalue in test %d\n", value);
+	
 	mu_assert("element != 1", value == 1);
 		
 	return 0;
@@ -83,41 +86,47 @@ static char * test_copy_seq()
 	printf("\rIm in the copySeq\n");
 	int size1 = 5, size2 =10;
 	int  i , j, value1, value2;
-	int *array_start1, *array_start2;
+	int *array1_p, *array2_p;
 		
 	seq_t struct1 = seq_create(size1);
 	seq_t struct2 = seq_create(size2);
 	
-	array_start1 = get_array(struct1);
-	array_start2 = get_array(struct2);
+	array1_p = get_array(struct1);
+	array2_p = get_array(struct2);
 	
-	for(i = 0; i < size1; i++)
+	/*for(i = 0; i < size1; i++)
 	{
-		*array_start1 = i;
-		 array_start1++;
+		*array1_p = i;
+		 array1_p++;
 		 increment_size(struct1);
-	}
+	}*/
 	
-	reset_array_p(struct1);
+	*array1_p = 3;
+	array1_p++;
+	increment_size(struct1);
+	*array1_p = 4;
+	array1_p++;
+	increment_size(struct1);
 	
 	copy_seq(struct1, struct2);
 	
-	for (j=0; j<size1; j++)
-	{
-		value1 = *array_start1;
-		value2 = *array_start2;
-		
-		printf("\rVal1: %d\n" , value1);
-		printf("\rVal2: %d\n" , value2);
-		
-		array_start1++;
-		array_start2++;
-		
-		mu_assert("elements are not equal", value1 == value2);
-		
-		reset_array_p(struct1);
-		reset_array_p(struct2);
-	}
+	value2 = *array2_p;
+	
+	printf("\rVal1: %d\n" , 3);
+	printf("\rVal2: %d\n" , value2);
+	
+	array2_p++;
+	
+	mu_assert("elements are not equal", 3 == value2);
+	
+	value2 = *array2_p;
+	
+	printf("\rVal1: %d\n" , 4);
+	printf("\rVal2: %d\n" , value2);
+	
+	array2_p++;
+	
+	mu_assert("elements are not equal", 4 == value2);
 	return 0;
 }
 
