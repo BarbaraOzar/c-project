@@ -80,7 +80,6 @@ static char * copy_seq(){
 
 static char * test_seq_add_zero () 
 {
-<<<<<<< HEAD
 	int size = 5, i, value, *array_start;
 	seq_t* item = seq_create(size);
 	seq_add_to(*item, 1);
