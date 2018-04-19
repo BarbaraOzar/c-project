@@ -25,10 +25,9 @@ seq_t* seq_create(int size)
 	return new_seq;
 }
 
-<<<<<<< HEAD
 void seq_add_to(seq_t self, int value) 
 {
-	if(self.size = self.max_size) {
+	if (self.size  == self.max_size) {
 		seq_expand(self);
 	}
 	
@@ -37,8 +36,6 @@ void seq_add_to(seq_t self, int value)
 	self.size++;
 }
 
-=======
->>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
 void seq_display(seq_t* self)
 {
 	int i;
@@ -58,10 +55,8 @@ void output_value(int value)
 	PORTA = 0xff;
 }
 
-
 seq_t* seq_expand(seq_t *self)
 {
-	int i;
 	seq_t *new_seq;  //variable creation    
 	
 	int new_size = *self->size + 50 ; // access size field of self
@@ -94,8 +89,6 @@ seq_t* copy_seq(seq_t *self, seq_t *new_self){
 	free(self->array);
 	free(self);
 	
-	return new_self;
-	
-	
+	return new_self;	
 }
 
