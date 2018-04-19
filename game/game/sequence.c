@@ -119,25 +119,15 @@ seq_t copy_seq(seq_t self, seq_t new_self)
 	
 	return new_self;
 }
-<<<<<<< HEAD
-seq_t seq_expand(seq_t self)
-{
-	seq_t *new_seq;				//variable creation 	
-	int new_size = (*self).size + 50 ;  // access size field of self
-=======
 
 seq_t seq_expand(seq_t self)
 {
 	seq_t new_seq;  //variable creation    
 		
 	int new_size = self->size + 50 ; // access size field of self
->>>>>>> master
 	new_seq = seq_create(new_size);
-	printf("\r Before expand : %d\n", new_size);
 	
 	copy_seq(self, new_seq);
-	printf("\r Before expand : %d\n", new_size);
-	
 	/*new_seq->array = calloc(new_size, sizeof(int));   reserves new_size spaces of sizeOf(int) each of the new_size space 
 	  seq_t *new_seq= malloc(sizeof(seq_t));            allocates memory for the expanded struct 
 	  new_seq->beginning = (*new_seq).array;
@@ -145,5 +135,3 @@ seq_t seq_expand(seq_t self)
 	
 	return new_seq;
 }
-
-
