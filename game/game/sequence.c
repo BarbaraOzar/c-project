@@ -44,3 +44,8 @@ void output_value(int value)
 	PORTA = 0xff;
 }
 
+
+void seq_expand(seq_t self){
+	
+}
+
