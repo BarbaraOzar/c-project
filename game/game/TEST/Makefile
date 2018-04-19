@@ -77,7 +77,7 @@ ADDITIONAL_DEPENDENCIES:=
 OUTPUT_FILE_DEP:= ./makedep.mk
 
 LIB_DEP+=  \
-C:/Users/winpc/Desktop/CAL/CALcode/0_C_PROGRAMMING/stdio_driver/libatmega2560_drivers.a
+C:/Users/Dell/Desktop/CAL/stdio_driver/libatmega2560_drivers.a
 
 LINKER_SCRIPT_DEP+= 
 

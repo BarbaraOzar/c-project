@@ -18,9 +18,9 @@ static char * test_seq_create()
 {
 	printf("\rI'm in the function\n\r");
 	int size = 10, i, value, *array_start;
-	seq_t* item = seq_create(size);
+	seq_t item = seq_create(size);
 	
-	array_start = (*item).array;
+	array_start = get_array(item);
 	
 	for(i = 0; i < 10; i++)
 	{
@@ -30,7 +30,7 @@ static char * test_seq_create()
 	}
 	return 0;
 }
-
+/*
 static char * test_seq_add_zero () 
 {
 	int size = 5, value, *array_start;
@@ -121,14 +121,14 @@ static char * test_copy_seq()
 	}
 	return 0;
 }
-
+*/
 static char * all_tests()
 {
-	/*mu_run_test(test_seq_create);
-	mu_run_test(test_seq_add_zero);
-	mu_run_test(test_seq_add_one);
-	mu_run_test(test_seq_add_multiple);*/
-	mu_run_test(test_copy_seq);
+	mu_run_test(test_seq_create);
+	//mu_run_test(test_seq_add_zero);
+	//mu_run_test(test_seq_add_one);
+	//mu_run_test(test_seq_add_multiple);*/
+	//mu_run_test(test_copy_seq);
 	return 0;
 }
 
@@ -137,6 +137,10 @@ int main()
 {
 	init_stdio(0, 10000000L);
 	sei();
+	
+	DDRA = 0xff;
+	PORTA = 0xff;
+	PORTA = ~2;
 	
 	char *result = all_tests();
 	if (result != 0) {
