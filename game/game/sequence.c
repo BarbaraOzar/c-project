@@ -27,8 +27,15 @@ seq_t* seq_create(int size)
 
 void seq_add_to(seq_t self, int value) 
 {
-	*(self).array = value;
-	(self).array += 1;
+	int count;
+	count = self.array - self.beginning;
+	if(count < self.size) {
+		*(self.array) = value;
+		self.array += 1;
+	}
+	else {
+		seq_expand(self);
+	}
 }
 
 void seq_display(seq_t* self)
@@ -41,6 +48,15 @@ void seq_display(seq_t* self)
 		array_p++;
 	}
 	*self->array = *self->beginning;
+}
+
+void seq_expand(seq_t self) {
+	
+}
+
+void seq_destroy(seq_t self) {
+	free(self->array);
+	free(self);
 }
 
 void output_value(int value)
