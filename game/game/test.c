@@ -18,9 +18,9 @@ static char * test_seq_create()
 {
 	printf("\rI'm in the function\n\r");
 	int size = 10, i, value, *array_start;
-	seq_t* item = seq_create(size);
+	seq_t item = seq_create(size);
 	
-	array_start = (*item).array;
+	array_start = get_array(item);
 	
 	for(i = 0; i < 10; i++)
 	{
@@ -34,24 +34,28 @@ static char * test_seq_create()
 static char * test_seq_add_zero () 
 {
 	int size = 5, value, *array_start;
-	seq_t* item = seq_create(size);
+
+	seq_t item = seq_create(size);
 	seq_add_to(item, 0);
 	
-	array_start = (*item).beginning;
+	array_start = get_beginning(item);
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
 	return 0;
 }
-	
 
 static char * test_seq_add_one ()
 {
-	int size = 5,  value, *array_start;
-	seq_t* item = seq_create(size);
+	int size = 5, value, *array_start;
+	seq_t item = seq_create(size);
 	seq_add_to(item, 1);
-		
-	array_start = (*item).beginning;
+	
+	array_start = get_beginning(item);
+
 	value = *array_start;
+	
+	printf("\rvalue in test %d\n", value);
+	
 	mu_assert("element != 1", value == 1);
 		
 	return 0;
@@ -60,12 +64,13 @@ static char * test_seq_add_one ()
 static char * test_seq_add_multiple ()
 {
 	int size = 5, i, value, *array_start, control;
-	seq_t* item = seq_create(size);
+	seq_t item = seq_create(size);
+
 	seq_add_to(item, 1);
 	seq_add_to(item, 2);
 	seq_add_to(item, 3);
 		
-	array_start = (*item).beginning;
+	array_start = get_beginning(item);
 	control = 1;
 		
 	for(i = 0; i < 3; i++)
@@ -103,56 +108,63 @@ static char * test_seq_add_beyond_capacity ()
 	
 	return 0;
 }
-	
+
 static char * test_copy_seq()
 {
 	printf("\rIm in the copySeq\n");
 	int size1 = 5, size2 =10;
 	int  i , j, value1, value2;
-	int *array_start1, *array_start2;
+	int *array1_p, *array2_p;
 		
-	seq_t *struct1 = seq_create(size1);
-	seq_t *struct2 = seq_create(size2);
+	seq_t struct1 = seq_create(size1);
+	seq_t struct2 = seq_create(size2);
 	
-	array_start1 = (*struct1).array;
-	array_start2 = (*struct2).array;
+	array1_p = get_array(struct1);
+	array2_p = get_array(struct2);
 	
-	for(i = 0; i < size1; i++)
+	/*for(i = 0; i < size1; i++)
 	{
-		*array_start1 = i;
-		 array_start1++;
-		 struct1->size++;
-	}
+		*array1_p = i;
+		 array1_p++;
+		 increment_size(struct1);
+	}*/
 	
-	array_start1 = struct1->beginning;
+	*array1_p = 3;
+	array1_p++;
+	increment_size(struct1);
+	*array1_p = 4;
+	array1_p++;
+	increment_size(struct1);
 	
 	copy_seq(struct1, struct2);
 	
-	for (j=0; j<size1; j++)
-	{
-		value1 = *array_start1;
-		value2 = *array_start2;
-		
-		printf("\rVal1: %d\n" , value1);
-		printf("\rVal2: %d\n" , value2);
-		
-		array_start1++;
-		array_start2++;
-		
-		mu_assert("elements are not equal", value1 == value2);
-		
-		*struct1->array = *struct1->beginning;
-		*struct2->array = *struct2->beginning;
-	}
+	value2 = *array2_p;
+	
+	printf("\rVal1: %d\n" , 3);
+	printf("\rVal2: %d\n" , value2);
+	
+	array2_p++;
+	
+	mu_assert("elements are not equal", 3 == value2);
+	
+	value2 = *array2_p;
+	
+	printf("\rVal1: %d\n" , 4);
+	printf("\rVal2: %d\n" , value2);
+	
+	array2_p++;
+	
+	mu_assert("elements are not equal", 4 == value2);
 	return 0;
 }
 
 static char * all_tests()
 {
-	/*mu_run_test(test_seq_create);
+	mu_run_test(test_seq_create);
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
-	mu_run_test(test_seq_add_multiple);*/
+	mu_run_test(test_seq_add_multiple);
+	mu_run_test(test_copy_seq);
 	mu_run_test(test_seq_add_beyond_capacity);
 	//mu_run_test(test_copy_seq);
 	return 0;
@@ -163,6 +175,10 @@ int main()
 {
 	init_stdio(0, 10000000L);
 	sei();
+	
+	DDRA = 0xff;
+	PORTA = 0xff;
+	PORTA = ~2;
 	
 	char *result = all_tests();
 	if (result != 0) {

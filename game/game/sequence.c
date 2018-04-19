@@ -10,17 +10,55 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #include <avr/io.h>
 
 #define SEQ_SIZE 100
 
+struct seq {
+	int *array;
+	int *beginning;
+	int max_size;
+	int size;
+};
+
 void output_value(int value);
 
-seq_t* seq_create(int size)
+int* get_array(seq_t self)
 {
-	seq_t *new_seq = malloc(sizeof(seq_t));
+	return self->array;
+}
+
+int* get_beginning(seq_t self)
+{
+	return self->beginning;
+}
+
+int get_size(seq_t self)
+{
+	return self->size;
+}
+
+int get_max_size(seq_t self)
+{
+	return self->max_size;
+}
+
+void increment_size(seq_t self)
+{
+	self->size++;
+}
+
+void reset_array_p(seq_t self)
+{
+	self->array = self->beginning;
+}
+
+seq_t seq_create(int size)
+{
+	seq_t new_seq = (seq_t)malloc(sizeof(struct seq));
 	new_seq->array = calloc(size, sizeof(int));
-	new_seq->beginning = (*new_seq).array;
+	new_seq->beginning = new_seq->array;
 	new_seq->size = 0;
 	new_seq->max_size = size;
 	return new_seq;
@@ -28,16 +66,17 @@ seq_t* seq_create(int size)
 
 void seq_add_to(seq_t * self, int value) 
 {
-	  if (self->size  == self->max_size) {
-		seq_expand(&self);
+	if (self->size == self->max_size) {
+		self = seq_expand(self);
 	}
-	
+	reset_array_p(self);
+	self->array += self->size;
 	*(self->array) = value;
-	self->array++;
-	self->size++;
+	increment_size(self);
+	reset_array_p(self);
 }
 
-void seq_display(seq_t* self)
+void seq_display(seq_t self)
 {
 	int i;
 	int* array_p = self->array;
@@ -46,7 +85,7 @@ void seq_display(seq_t* self)
 		output_value(*array_p);
 		array_p++;
 	}
-	*self->array = *self->beginning;
+	*(self->array) = *(self->beginning);
 }
 
 void output_value(int value)
@@ -56,37 +95,36 @@ void output_value(int value)
 	PORTA = 0xff;
 }
 
-seq_t* copy_seq(seq_t *self, seq_t *new_self){
-	printf("\r I am in Copy seq\n");
+seq_t copy_seq(seq_t self, seq_t new_self)
+{
 	int i;
-	int *arrayInitial_p = self->array;  
-	int *array2_p = new_self->array;
+	int *array_p = self->array;  
+	int *new_array_p = new_self->array;
 	
-	printf("\r Size equal to: %d\n", (*self).size);
+	reset_array_p(self);
+	reset_array_p(new_self);
 	
-	for(i = 0; i <= self->size; i++)
+	for(i = 0; i < self->size; i++)
 	{
-		*array2_p = *arrayInitial_p;
-		new_self->size++;	//cuz' you are not able to check the size of the array with pointer , must keep track of size
-		arrayInitial_p++;
-		array2_p++;
+		*new_array_p = *array_p;
+		increment_size(new_self);
+		array_p++;
+		new_array_p++;
 	}
 	
-	*self->array = *self->beginning; //when reusing this array, the pointer is reseted to point to the beginning
-	*new_self->array = *new_self->beginning;
+	reset_array_p(new_self);
 	
 	free(self->array);
 	free(self);
 	
 	return new_self;
-
 }
 
-seq_t* seq_expand(seq_t *self)
+seq_t seq_expand(seq_t self)
 {
-	seq_t *new_seq;  //variable creation    
+	seq_t new_seq;  //variable creation    
 		
-	int new_size = (*self).size + 50 ; // access size field of self
+	int new_size = self->size + 50 ; // access size field of self
 	new_seq = seq_create(new_size);
 	
 	copy_seq(self, new_seq);
@@ -97,6 +135,5 @@ seq_t* seq_expand(seq_t *self)
 	
 	return new_seq;
 }
-
 
 
