@@ -34,28 +34,29 @@ static char * test_seq_create()
 static char * test_seq_add_zero () 
 {
 	int size = 5, value, *array_start;
-	seq_t* item = seq_create(size);
-	seq_add_to(*item, 0);
+	seq_t item = seq_create(size);
+	seq_add_to(item, 0);
 	
 	array_start = get_beginning(item);
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
 	return 0;
 }
-	/*
 
 static char * test_seq_add_one ()
 {
 	int size = 5,  value, *array_start;
-	seq_t* item = seq_create(size);
-	seq_add_to(*item, 1);
+	seq_t item = seq_create(size);
+	seq_add_to(item, 1);
 		
-	array_start = (*item).beginning;
+	array_start = get_beginning(item);
 	value = *array_start;
 	mu_assert("element != 1", value == 1);
 		
 	return 0;
 }
+
+/*
 
 static char * test_seq_add_multiple ()
 {
@@ -125,8 +126,8 @@ static char * test_copy_seq()
 static char * all_tests()
 {
 	mu_run_test(test_seq_create);
-	//mu_run_test(test_seq_add_zero);
-	//mu_run_test(test_seq_add_one);
+	mu_run_test(test_seq_add_zero);
+	mu_run_test(test_seq_add_one);
 	//mu_run_test(test_seq_add_multiple);*/
 	//mu_run_test(test_copy_seq);
 	return 0;

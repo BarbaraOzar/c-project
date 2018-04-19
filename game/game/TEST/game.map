@@ -63,6 +63,12 @@ Discarded input sections
  .text          0x00000000        0x0 sequence.o
  .data          0x00000000        0x0 sequence.o
  .bss           0x00000000        0x0 sequence.o
+ .text.get_beginning
+                0x00000000        0x8 sequence.o
+ .text.get_size
+                0x00000000        0x8 sequence.o
+ .text.get_max_size
+                0x00000000        0x8 sequence.o
  .text.output_value
                 0x00000000       0x1c sequence.o
  .text.seq_display
@@ -663,30 +669,30 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x158
+.debug_aranges  0x00000000      0x170
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x50 sequence.o
+                0x00000000       0x68 sequence.o
  .debug_aranges
-                0x00000050       0x20 test.o
+                0x00000068       0x20 test.o
  .debug_aranges
-                0x00000070       0x30 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+                0x00000088       0x30 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
  .debug_aranges
-                0x000000a0       0x48 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
+                0x000000b8       0x48 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
  .debug_aranges
-                0x000000e8       0x70 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
+                0x00000100       0x70 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1e98
+.debug_info     0x00000000     0x1f22
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc      0x3de sequence.o
- .debug_info    0x00000f9a      0x23b test.o
- .debug_info    0x000011d5      0x42d C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_info    0x00001602      0x210 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_info    0x00001812      0x686 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_info    0x00000bbc      0x468 sequence.o
+ .debug_info    0x00001024      0x23b test.o
+ .debug_info    0x0000125f      0x42d C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_info    0x0000168c      0x210 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_info    0x0000189c      0x686 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
 
 .debug_abbrev   0x00000000     0x126d
  *(.debug_abbrev)
@@ -697,44 +703,44 @@ END GROUP
  .debug_abbrev  0x00000fa1       0xde C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
  .debug_abbrev  0x0000107f      0x1ee C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
 
-.debug_line     0x00000000      0xbe4
+.debug_line     0x00000000      0xc27
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1f9 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_line    0x000001f9      0x26e sequence.o
- .debug_line    0x00000467      0x135 test.o
- .debug_line    0x0000059c      0x144 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_line    0x000006e0      0x193 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_line    0x00000873      0x371 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_line    0x000001f9      0x2b1 sequence.o
+ .debug_line    0x000004aa      0x135 test.o
+ .debug_line    0x000005df      0x144 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_line    0x00000723      0x193 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_line    0x000008b6      0x371 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
 
-.debug_frame    0x00000000      0x624
+.debug_frame    0x00000000      0x654
  *(.debug_frame)
- .debug_frame   0x00000000       0xf4 sequence.o
- .debug_frame   0x000000f4       0x54 test.o
- .debug_frame   0x00000148       0xa0 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_frame   0x000001e8       0x74 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_frame   0x0000025c      0x3c8 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_frame   0x00000000      0x124 sequence.o
+ .debug_frame   0x00000124       0x54 test.o
+ .debug_frame   0x00000178       0xa0 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_frame   0x00000218       0x74 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_frame   0x0000028c      0x3c8 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
 
-.debug_str      0x00000000      0xa62
+.debug_str      0x00000000      0xa73
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_str     0x000003e6      0x22d sequence.o
-                                0x287 (size before relaxing)
- .debug_str     0x00000613       0x62 test.o
+ .debug_str     0x000003e6      0x23e sequence.o
+                                0x2ab (size before relaxing)
+ .debug_str     0x00000624       0x62 test.o
                                 0x1f0 (size before relaxing)
- .debug_str     0x00000675      0x222 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_str     0x00000686      0x222 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
                                 0x35e (size before relaxing)
- .debug_str     0x00000897       0x53 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_str     0x000008a8       0x53 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
                                 0x22b (size before relaxing)
- .debug_str     0x000008ea      0x178 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_str     0x000008fb      0x178 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
                                 0x454 (size before relaxing)
 
-.debug_loc      0x00000000     0x16b5
+.debug_loc      0x00000000     0x172d
  *(.debug_loc)
- .debug_loc     0x00000000      0x546 sequence.o
- .debug_loc     0x00000546      0x1c7 test.o
- .debug_loc     0x0000070d      0x220 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_loc     0x0000092d       0xe2 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_loc     0x00000a0f      0xca6 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_loc     0x00000000      0x5be sequence.o
+ .debug_loc     0x000005be      0x1c7 test.o
+ .debug_loc     0x00000785      0x220 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_loc     0x000009a5       0xe2 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_loc     0x00000a87      0xca6 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -754,13 +760,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x140
+.debug_ranges   0x00000000      0x158
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x40 sequence.o
- .debug_ranges  0x00000040       0x30 test.o
- .debug_ranges  0x00000070       0x20 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
- .debug_ranges  0x00000090       0x38 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
- .debug_ranges  0x000000c8       0x78 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
+ .debug_ranges  0x00000000       0x58 sequence.o
+ .debug_ranges  0x00000058       0x30 test.o
+ .debug_ranges  0x00000088       0x20 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(atmega2560_drivers.o)
+ .debug_ranges  0x000000a8       0x38 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(buffer.o)
+ .debug_ranges  0x000000e0       0x78 C:\Users\Dell\Desktop\CAL\stdio_driver\libatmega2560_drivers.a(serial.o)
 
 .debug_macro
  *(.debug_macro)
