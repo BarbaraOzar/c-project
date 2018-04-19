@@ -12,6 +12,7 @@
 typedef struct {
 	int *array;
 	int *beginning;
+	int max_size;
 	int size;
 } seq_t;
 
@@ -19,9 +20,8 @@ seq_t* seq_create(int size);
 void seq_destroy(seq_t self);
 
 void seq_add_to(seq_t self, int value);
-void seq_display(seq_t* self);
-seq_t* seq_expand(seq_t *self);
-seq_t* copy_seq(seq_t *self, seq_t *new_self);
+void seq_display(seq_t * self);
+void seq_expand(seq_t self);
 
 
 #endif /* SEQUENCE_H_ */
