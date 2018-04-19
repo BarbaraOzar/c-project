@@ -135,5 +135,3 @@ seq_t seq_expand(seq_t self)
 	
 	return new_seq;
 }
-
-

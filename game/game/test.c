@@ -4,7 +4,6 @@
  * Created: 2018-04-17 10:48:59
  *  Author: Dell
  */ 
-
 #include <avr/io.h>
 #include <stdio.h>
 #include <avr/interrupt.h>
@@ -158,6 +157,24 @@ static char * test_copy_seq()
 	return 0;
 }
 
+static char * test_expand()
+{
+	printf("\r ExpandMethod is tested\n");
+	
+	int value1, size1 = 5;
+	seq_t *struct1 = seq_create(size1);
+	
+	printf("\r Value: %d\n", value1);
+	seq_expand(struct1);
+	
+	value1 = (*struct1).size;
+	printf("\r Value: %d\n", value1);
+	
+	mu_assert("\rSeq. has expanded", value1 == 55);
+
+	return 0;
+}
+
 static char * all_tests()
 {
 	mu_run_test(test_seq_create);
@@ -166,7 +183,7 @@ static char * all_tests()
 	mu_run_test(test_seq_add_multiple);
 	mu_run_test(test_copy_seq);
 	mu_run_test(test_seq_add_beyond_capacity);
-	//mu_run_test(test_copy_seq);
+	mu_run_test(test_expand);
 	return 0;
 }
 
