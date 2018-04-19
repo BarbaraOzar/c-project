@@ -25,20 +25,17 @@ seq_t* seq_create(int size)
 	return new_seq;
 }
 
-<<<<<<< HEAD
 void seq_add_to(seq_t self, int value) 
 {
 	if(self.size = self.max_size) {
-		seq_expand(self);
+		self = seq_expand(self);
 	}
 	
 	*(self.array) = value;
-	self.array = self.array + 1;
+	self.array++;
 	self.size++;
 }
 
-=======
->>>>>>> a29494e894ed6ea03d52f14846e40dc5d0507fee
 void seq_display(seq_t* self)
 {
 	int i;
@@ -58,7 +55,6 @@ void output_value(int value)
 	PORTA = 0xff;
 }
 
-
 seq_t* seq_expand(seq_t *self)
 {
 	int i;
@@ -71,11 +67,11 @@ seq_t* seq_expand(seq_t *self)
 	/*new_seq->array = calloc(new_size, sizeof(int)); // i reserve new_size spaces of sizeOf(int) each of the new_size space 
 	/* seq_t *new_seq= malloc(sizeof(seq_t)); //allocates memory for the expanded struct 
 	new_seq->beginning = (*new_seq).array;
-	new_seq->size = 0; //cuz' you are not able to check the size of the array with pointer , must keep track of size*/
-	
+	new_seq->size = 0; //cuz' you are not able to check the size of the array with pointer , must keep track of size
 }
 
 seq_t* copy_seq(seq_t *self, seq_t *new_self){
+	
 	int i;
 	int *arrayInitial_p = self->array;
 	int *array2_p = new_self->array;
@@ -95,7 +91,5 @@ seq_t* copy_seq(seq_t *self, seq_t *new_self){
 	free(self);
 	
 	return new_self;
-	
-	
 }
 
