@@ -14,9 +14,17 @@
 *.map
 *.srec
 *.cproj
+TEST/*
+Debug/*
+game/game/TEST/*
+game/game/Debug/*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+TEST/*
+Debug/*
+game/game/TEST/*
+game/game/Debug/*
 
 # Build results
 [Dd]ebug/
