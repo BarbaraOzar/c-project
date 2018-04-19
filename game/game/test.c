@@ -157,7 +157,7 @@ static char * test_copy_seq()
 	return 0;
 }
 
-static char *test_expand()
+static char * test_expand()
 {
 	printf("\r ExpandMethod is tested\n");
 	
@@ -183,7 +183,7 @@ static char * all_tests()
 	mu_run_test(test_seq_add_multiple);
 	mu_run_test(test_copy_seq);
 	mu_run_test(test_seq_add_beyond_capacity);
-	//mu_run_test(test_copy_seq);
+	mu_run_test(test_expand);
 	return 0;
 }
 
