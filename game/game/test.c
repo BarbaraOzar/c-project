@@ -30,19 +30,19 @@ static char * test_seq_create()
 	}
 	return 0;
 }
-/*
+
 static char * test_seq_add_zero () 
 {
 	int size = 5, value, *array_start;
 	seq_t* item = seq_create(size);
 	seq_add_to(*item, 0);
 	
-	array_start = (*item).beginning;
+	array_start = get_beginning(item);
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
 	return 0;
 }
-	
+	/*
 
 static char * test_seq_add_one ()
 {

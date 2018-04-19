@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #include <avr/io.h>
 
 #define SEQ_SIZE 100
@@ -21,14 +22,27 @@ struct seq {
 	int size;
 };
 
+void output_value(int value);
+
 int* get_array(seq_t self)
 {
 	return self->array;
 }
 
+int* get_beginning(seq_t self)
+{
+	return self->beginning;
+}
 
+int get_size(seq_t self)
+{
+	return self->size;
+}
 
-void output_value(int value);
+int get_max_size(seq_t self)
+{
+	return self->max_size;
+}
 
 seq_t seq_create(int size)
 {
