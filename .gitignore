@@ -31,6 +31,8 @@ bld/
 [Ll]og/
 Makefile
 game.cproj
+TEST/*
+Debug/*
 
 # Visual Studio 2015 cache/options directory
 .vs/
