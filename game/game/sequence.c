@@ -64,7 +64,7 @@ seq_t seq_create(int size)
 	return new_seq;
 }
 
-void seq_add_to(seq_t self, int value) 
+void seq_add_to(seq_t * self, int value) 
 {
 	if (self->size == self->max_size) {
 		self = seq_expand(self);
