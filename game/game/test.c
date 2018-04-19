@@ -46,7 +46,7 @@ static char * test_seq_add_zero ()
 
 static char * test_seq_add_one ()
 {
-	int size = 5, i, value, *array_start;
+	int size = 5,  value, *array_start;
 	seq_t* item = seq_create(size);
 	seq_add_to(*item, 1);
 		
