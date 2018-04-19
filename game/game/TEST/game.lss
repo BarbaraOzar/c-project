@@ -19,7 +19,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 00001234  00000000  00000000  000034f2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000b8c  00000000  00000000  00004726  2**0
+  8 .debug_line   00000b8d  00000000  00000000  00004726  2**0
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00000654  00000000  00000000  000052b4  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -243,7 +243,7 @@ seq_t* copy_seq(seq_t *self, seq_t *new_self){
      168:	7c 01       	movw	r14, r24
      16a:	eb 01       	movw	r28, r22
 	int i;
-	int *arrayInitial_p = self->array;
+	int *arrayInitial_p = self->array;  
      16c:	dc 01       	movw	r26, r24
      16e:	cc 90       	ld	r12, X
      170:	11 96       	adiw	r26, 0x01	; 1
@@ -295,7 +295,7 @@ seq_t* copy_seq(seq_t *self, seq_t *new_self){
      1bc:	01 96       	adiw	r24, 0x01	; 1
      1be:	9f 83       	std	Y+7, r25	; 0x07
      1c0:	8e 83       	std	Y+6, r24	; 0x06
-	int *arrayInitial_p = self->array;
+	int *arrayInitial_p = self->array;  
 	int *array2_p = new_self->array;
 	
 	printf("\r Size equal to: %d\n", (*self).size);

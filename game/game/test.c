@@ -122,6 +122,26 @@ static char * test_copy_seq()
 	return 0;
 }
 
+static char *test_expand()
+{
+		printf("\rIm in the expandMethod\n");
+		int size1 = 5;
+		int value1;
+		//int *array_start1;
+		
+		seq_t *struct1 = seq_create(size1);
+	
+		seq_expand(struct1);
+		
+		value1 = struct1->size;
+		
+		mu_assert("\rSeq. Expanded", value1 == 55);
+		
+		//*struct1->array = *struct1->beginning;
+
+	return 0;
+}
+
 static char * all_tests()
 {
 	/*mu_run_test(test_seq_create);
