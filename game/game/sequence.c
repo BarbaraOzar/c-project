@@ -27,12 +27,12 @@ seq_t* seq_create(int size)
 
 void seq_add_to(seq_t self, int value) 
 {
-	if (self.size  == self.max_size) {
+	  if (self.size  == self.max_size) {
 		seq_expand(&self);
 	}
 	
 	*(self.array) = value;
-	self.array = self.array + 1;
+	self.array++;
 	self.size++;
 }
 
@@ -56,6 +56,7 @@ void output_value(int value)
 }
 
 seq_t* copy_seq(seq_t *self, seq_t *new_self){
+	
 	int i;
 	int *arrayInitial_p = self->array;  
 	int *array2_p = new_self->array;
@@ -77,7 +78,9 @@ seq_t* copy_seq(seq_t *self, seq_t *new_self){
 	free(self);
 	
 	return new_self;
+
 }
+
 seq_t* seq_expand(seq_t *self)
 {
 	seq_t *new_seq;  //variable creation    
@@ -92,7 +95,6 @@ seq_t* seq_expand(seq_t *self)
 	  new_seq->size = 0;                    cuz' you are not able to check the size of the array with pointer , must keep track of size*/
 	
 	return new_seq;
-
 }
 
 
