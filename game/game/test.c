@@ -31,14 +31,53 @@ static char * test_seq_create()
 	return 0;
 }
 
+static char * copy_seq(){
+	int size1 = 5, size2 =10;
+	int  i , j, value1, value2;
+	int *array_start1, *array_start2;
+		
+	seq_t *struct1 = seq_create(size1);
+	seq_t *struct2 = seq_create(size2);
+	
+	array_start1 = (*struct1).array;
+	array_start2 = (*struct2).array;
+	
+	for(i = 0; i < size1; i++)
+	{
+		*array_start1 = i;
+		 array_start1++;
+	}
+		
+	copy_seq(struct1, struct2);
+	
+	for (j=0; j<size1; j++)
+	{
+		value1 = *array_start1;
+		value2 = *array_start2;
+		
+		array_start1++;
+		array_start2++;
+		
+		mu_assert("elements are equal", value1 == value2);
+	}
+	
+		return 0;
+
+}
+	
+
 static char * test_seq_add_zero () 
 {
 	
 }
 
+
+
+
 static char * all_tests()
 {
 	mu_run_test(test_seq_create);
+	mu_run_test(copy_seq);
 	return 0;
 }
 
