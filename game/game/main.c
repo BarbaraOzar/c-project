@@ -9,6 +9,7 @@
 #include <avr/interrupt.h>
 #include <stdio.h>
 #include "atmega2560_drivers.h"
+#include "sequence.h"
 
 void ports_configuration();
 
@@ -18,16 +19,19 @@ int main(void)
 	ports_configuration();
 	int i, value = 2;
 	
-	seq_t seq = seq_create(5);
+	seq_t* seq = seq_create(5);
 	
 	
 	for(i = 0; i <= 5; i++)
 	{
-		seq.array = value;
-		seq.array++;
+		*(seq->array) = value;
+		seq->size++;
+		seq->array++;
 		value+=2;
 	}
 	
+	seq->array = seq->beginning;
+	seq_display(seq);
 	
 	init_stdio(0, 10000000L);
 	sei();
