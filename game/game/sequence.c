@@ -13,7 +13,6 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-#define SEQ_SIZE 100
 
 struct seq {
 	int *array;
