@@ -63,13 +63,14 @@ void seq_add_to(seq_t self, int value)
 	increment_size(self);
 }
 
-void seq_display(seq_t self)
+void seq_display(seq_t self, board_t board)
 {
 	int i;
 	int* array_p = get_array(self);
 	for(i = 0; i <= get_size(self); i++)
 	{
-		output_value(*array_p);
+		board_turn_on_led(board, *array_p);
+		board_clear(board);
 		array_p++;
 	}
 }
