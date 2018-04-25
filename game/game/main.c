@@ -25,7 +25,7 @@ int main(void)
 	//create Welcome sequence
 	int i;
 	seq_t welcome = seq_create(8);
-	for(i=0; i<get_size(welcome); i++){
+	for(i=0; i<get_max_size(welcome); i++){
 		seq_add_to(welcome, i);
 	}
 
@@ -51,10 +51,13 @@ int main(void)
 		
 		board_t b = board_create(PORTA, DDRA, PINB, DDRB);
 		
+		printf("\rdisplay welcome\n");
 		seq_display(welcome, b);
 		board_wait_for_button_press(b);
 		
-		while(control==1){
+		while(control==1)
+		{
+			printf("\rgame sequence\n");
 			seq_display(game_sequence, b);
 			for(i = 0; i<get_size(game_sequence); i++){
 				input = board_get_input(b);

@@ -5,6 +5,7 @@
  *  Author: Dell
  */ 
 
+#include "board.h"
 
 #ifndef SEQUENCE_H_
 #define SEQUENCE_H_
@@ -20,7 +21,7 @@ seq_t seq_create(int size);
 void seq_destroy(seq_t self);
 
 void seq_add_to(seq_t self, int value);
-void seq_display(seq_t self);
+void seq_display(seq_t self, board_t board);
 seq_t seq_expand(seq_t self);
 seq_t copy_seq(seq_t self, seq_t new_self);
 
