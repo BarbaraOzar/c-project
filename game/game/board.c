@@ -16,7 +16,7 @@
 struct board
 {
 	volatile int *port;
-}
+};
 
 board_t board_create(volatile int *port)
 {

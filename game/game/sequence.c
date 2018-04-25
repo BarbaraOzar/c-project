@@ -13,7 +13,7 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-
+#include <util/delay.h>
 struct seq {
 	int *array;
 	int *beginning;
@@ -53,6 +53,10 @@ void reset_array_p(seq_t self)
 	self->array = self->beginning;
 }
 
+void increment_array_p(seq_t self) {
+	self->array++;
+}
+
 seq_t seq_create(int size)
 {
 	seq_t new_seq = (seq_t)malloc(sizeof(struct seq));
@@ -68,6 +72,7 @@ void seq_add_to(seq_t self, int value)
 	if (self->size == self->max_size) {
 		self = seq_expand(self);
 	}
+	
 	reset_array_p(self);
 	self->array += self->size;
 	*(self->array) = value;
@@ -97,23 +102,24 @@ void output_value(int value)
 seq_t copy_seq(seq_t self, seq_t new_self)
 {
 	int i;
-	int *array_p = self->array;  
-	int *new_array_p = new_self->array;
-	
 	reset_array_p(self);
 	reset_array_p(new_self);
 	
 	for(i = 0; i < self->size; i++)
 	{
-		*new_array_p = *array_p;
+		*new_self->array = *self->array;
+		printf("\r value %d \n", *new_self->array);
+		printf("\r value %d \n", *self->array);
 		increment_size(new_self);
-		array_p++;
-		new_array_p++;
+		increment_array_p(self);
+		increment_array_p(new_self);
 	}
 	
-	reset_array_p(new_self);
-	
-	free(self->array);
+	while(1) {
+	//	printf("\r value %d \n", *self->array++);
+	//	printf("\r value %d \n", *new_self->array++);
+		_delay_ms(3000);
+	}
 	free(self);
 	
 	return new_self;
@@ -121,16 +127,9 @@ seq_t copy_seq(seq_t self, seq_t new_self)
 
 seq_t seq_expand(seq_t self)
 {
-	seq_t new_seq;  //variable creation    
-		
 	int new_size = self->size + 50 ; // access size field of self
-	new_seq = seq_create(new_size);
+	seq_t new_seq = seq_create(new_size);
 	
 	copy_seq(self, new_seq);
-	/*new_seq->array = calloc(new_size, sizeof(int));   reserves new_size spaces of sizeOf(int) each of the new_size space 
-	  seq_t *new_seq= malloc(sizeof(seq_t));            allocates memory for the expanded struct 
-	  new_seq->beginning = (*new_seq).array;
-	  new_seq->size = 0;                    cuz' you are not able to check the size of the array with pointer , must keep track of size*/
-	
 	return new_seq;
 }

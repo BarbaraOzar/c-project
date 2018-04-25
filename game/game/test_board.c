@@ -5,9 +5,9 @@
  *  Author: Dell
  */ 
 
-#include "test_display.h"
+#include "test_board.h"
 
-static char * test_board_turn_on_led0()
+char * test_board_turn_on_led0()
 {
 	volatile int result = 0;
 	board_t board = board_create(&result);
@@ -16,7 +16,7 @@ static char * test_board_turn_on_led0()
 	return 0;
 }
 
-static char * test_board_turn_on_led1()
+char * test_board_turn_on_led1()
 {
 	volatile int result = 0;
 	board_t board = board_create(&result);

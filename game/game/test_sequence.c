@@ -9,9 +9,8 @@
 #include <stdio.h>
 #include "sequence.h"
 
-static char * test_seq_create()
+char * test_seq_create()
 {
-	printf("\rI'm in the function\n\r");
 	int size = 10, i, value, *array_start;
 	seq_t item = seq_create(size);
 	
@@ -26,7 +25,7 @@ static char * test_seq_create()
 	return 0;
 }
 
-static char * test_seq_add_zero () 
+char * test_seq_add_zero () 
 {
 	int size = 5, value, *array_start;
 
@@ -39,7 +38,7 @@ static char * test_seq_add_zero ()
 	return 0;
 }
 
-static char * test_seq_add_one ()
+char * test_seq_add_one ()
 {
 	int size = 5, value, *array_start;
 	seq_t item = seq_create(size);
@@ -47,16 +46,13 @@ static char * test_seq_add_one ()
 	
 	array_start = get_beginning(item);
 
-	value = *array_start;
-	
-	printf("\rvalue in test %d\n", value);
-	
+	value = *array_start
 	mu_assert("element != 1", value == 1);
 		
 	return 0;
 }
 
-static char * test_seq_add_multiple ()
+char * test_seq_add_multiple ()
 {
 	int size = 5, i, value, *array_start, control;
 	seq_t item = seq_create(size);
@@ -79,7 +75,7 @@ static char * test_seq_add_multiple ()
 	return 0;
 }
 
-static char * test_seq_add_beyond_capacity ()
+char * test_seq_add_beyond_capacity ()
 {
 	int size = 5, i, value, *array_start, control;
 	seq_t item = seq_create(size);
@@ -104,7 +100,7 @@ static char * test_seq_add_beyond_capacity ()
 	return 0;
 }
 
-static char * test_copy_seq()
+char * test_copy_seq()
 {
 	printf("\rIm in the copySeq\n");
 	int size1 = 5, size2 =10;
@@ -153,7 +149,7 @@ static char * test_copy_seq()
 	return 0;
 }
 
-static char * all_sequence_tests()
+char * all_sequence_tests()
 {
 	mu_run_test(test_seq_create);
 	mu_run_test(test_seq_add_zero);
