@@ -42,7 +42,7 @@ int main(void)
 		
 	while(1)
 	{
-		int level=3, input, i;
+		int level=3, input, i, running=0, comparison, control=1 ;
 		seq_t game_sequence = seq_create(20);
 		for (i = 0 ; i<level ; i++)
 		{ 
@@ -53,14 +53,22 @@ int main(void)
 		
 		seq_display(welcome, b);
 		board_wait_for_button_press(b);
-		seq_display(game_sequence, b);
 		
-		
-		
-		
-		
-		
-		
+		while(control==1){
+			seq_display(game_sequence, b);
+			for(i = 0; i<get_size(game_sequence); i++){
+				input = board_get_input(b);
+				comparison = seq_compare(game_sequence, input, running++);
+				if (comparison == 0){
+					control=0;
+					seq_display(error,b);
+					break;
+				}
+			}
+			running=0;
+			seq_add_to(game_sequence, rand() % 8 );
+		}
+			
 	}
 }
 
