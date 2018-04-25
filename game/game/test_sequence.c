@@ -8,6 +8,8 @@
 #include "test_sequence.h"
 #include <stdio.h>
 #include "sequence.h"
+#define F_CPU 10000000L
+#include <util/delay.h>
 
 char * test_seq_create()
 {
@@ -32,7 +34,7 @@ char * test_seq_add_zero ()
 	seq_t item = seq_create(size);
 	seq_add_to(item, 0);
 	
-	array_start = get_beginning(item);
+	array_start = get_array(item);
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
 	return 0;
@@ -44,7 +46,7 @@ char * test_seq_add_one ()
 	seq_t item = seq_create(size);
 	seq_add_to(item, 1);
 	
-	array_start = get_beginning(item);
+	array_start = get_array(item);
 
 	value = *array_start
 	mu_assert("element != 1", value == 1);
@@ -61,7 +63,7 @@ char * test_seq_add_multiple ()
 	seq_add_to(item, 2);
 	seq_add_to(item, 3);
 		
-	array_start = get_beginning(item);
+	array_start = get_array(item);
 	control = 1;
 		
 	for(i = 0; i < 3; i++)
@@ -75,77 +77,99 @@ char * test_seq_add_multiple ()
 	return 0;
 }
 
-char * test_seq_add_beyond_capacity ()
+static char * test_seq_add_beyond_capacity ()
 {
-	int size = 5, i, value, *array_start, control;
+	int size = 5;
+	int i, value, control;
 	seq_t item = seq_create(size);
+	int* array_p = get_array(item);
 	seq_add_to(item, 1);
 	seq_add_to(item, 2);
 	seq_add_to(item, 3);
 	seq_add_to(item, 4);
 	seq_add_to(item, 5);
 	seq_add_to(item, 6);
-	
-	array_start = get_beginning(item);
+	seq_add_to(item, 7);
+	seq_add_to(item, 8);
+	seq_add_to(item, 9);
+
 	control = 1;
 	
 	for(i = 0; i < 6; i++)
 	{
-		value = *array_start;
+		value = *array_p;
 		mu_assert("element != expected", value == control);
-		array_start++;
+		array_p++;
 		control++;
 	}
 	
 	return 0;
 }
 
-char * test_copy_seq()
+static char * test_copy_seq()
 {
-	printf("\rIm in the copySeq\n");
-	int size1 = 5, size2 =10;
-	int  i , j, value1, value2;
+	int size1 = 5, size2 = 10;
+	int  i, value;
 	int *array1_p, *array2_p;
 		
-	seq_t struct1 = seq_create(size1);
-	seq_t struct2 = seq_create(size2);
+	seq_t item1 = seq_create(size1);
+	seq_t item2 = seq_create(size2);
 	
-	array1_p = get_array(struct1);
-	array2_p = get_array(struct2);
-	
-	/*for(i = 0; i < size1; i++)
-	{
-		*array1_p = i;
-		 array1_p++;
-		 increment_size(struct1);
-	}*/
+	array1_p = get_array(item1);
+	array2_p = get_array(item2);
 	
 	*array1_p = 3;
 	array1_p++;
-	increment_size(struct1);
+	increment_size(item1);
 	*array1_p = 4;
 	array1_p++;
-	increment_size(struct1);
+	increment_size(item1);
+	*array1_p = 5;
+	array1_p++;
+	increment_size(item1);
+	*array1_p = 6;
+	array1_p++;
+	increment_size(item1);
 	
-	copy_seq(struct1, struct2);
+	copy_seq(item1, item2);
 	
-	value2 = *array2_p;
+	for(i = 3; i <= 6; i++) {
+		value = *array2_p;
+		mu_assert("elements are not equal", i == value);
+		array2_p++;
+	}
+	return 0;
+}
+
+static char * test_expand_size()
+{
+	int value1, size1 = 5;
+	seq_t item1 = seq_create(size1);
+	item1 = seq_expand(item1);
+	value1 = get_max_size(item1);
 	
-	printf("\rVal1: %d\n" , 3);
-	printf("\rVal2: %d\n" , value2);
+	mu_assert("\rSeq. has not expanded\n", value1 == 55);
+	return 0;
+}
+
+static char * test_expand_elements()
+{
+	int size = 5;
+	int i;
+	seq_t item = seq_create(size);
+	int* array_p = get_array(item);
+	seq_add_to(item, 1);
+	seq_add_to(item, 2);
+	seq_add_to(item, 3);
+	seq_add_to(item, 4);
+	item = seq_expand(item);
 	
-	array2_p++;
-	
-	mu_assert("elements are not equal", 3 == value2);
-	
-	value2 = *array2_p;
-	
-	printf("\rVal1: %d\n" , 4);
-	printf("\rVal2: %d\n" , value2);
-	
-	array2_p++;
-	
-	mu_assert("elements are not equal", 4 == value2);
+	for (i = 1; i <= 4; i++)
+	{
+		mu_assert("values in arrays != test_expand_elements", *array_p == i);
+		array_p++;
+	}
+	mu_assert("last value != 0 test_expand_elements", *array_p == 0);
 	return 0;
 }
 
@@ -156,7 +180,8 @@ char * all_sequence_tests()
 	mu_run_test(test_seq_add_one);
 	mu_run_test(test_seq_add_multiple);
 	mu_run_test(test_copy_seq);
+	mu_run_test(test_expand_size);
 	mu_run_test(test_seq_add_beyond_capacity);
-	//mu_run_test(test_copy_seq);
+	mu_run_test(test_expand_elements);
 	return 0;
 }
