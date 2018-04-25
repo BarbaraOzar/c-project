@@ -13,7 +13,7 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-#include <util/delay.h>
+
 struct seq {
 	int *array;
 	int max_size;
@@ -67,9 +67,11 @@ void seq_display(seq_t self, board_t board)
 {
 	int i;
 	int* array_p = get_array(self);
-	for(i = 0; i <= get_size(self); i++)
+	for(i = 0; i < get_size(self); i++)
 	{
+		printf("\rled no: %d\n", *array_p);
 		board_turn_on_led(board, *array_p);
+		_delay_ms(1000);
 		board_clear(board);
 		array_p++;
 	}
