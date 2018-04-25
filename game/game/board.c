@@ -23,8 +23,6 @@ struct board
 
 board_t board_create(volatile int *port_output, volatile int *ddr_output, volatile int *input_pin, volatile int *ddr_input)
 {
-	*port_output = 0xff;
-	*input_pin = 0xff;
 	*ddr_output = 0xff;
 	*ddr_input = 0x00;
 	board_t new_board = (board_t)malloc(sizeof(struct board));
@@ -42,15 +40,15 @@ void board_turn_on_led(board_t self, int number)
 
 int board_get_input(board_t self)
 {
-	int i, input = *(self->input_pin);
+	int i = 0; 
+	uint8_t input = ~(*(self->input_pin));
 	
-	for(i = 0; i <= 7; i++) 
+	while(input != 0)
 	{
-		
+		input = (input>>1);
+		i++;
 	}
-	
-	
-	
+	return i-1;	
 }
 
 void board_wait_for_button_press(board_t self)
