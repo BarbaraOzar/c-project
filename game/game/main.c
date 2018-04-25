@@ -19,6 +19,10 @@ int main(void)
 {
 	ports_configuration();
 	
+	//INTERRUPT SETUP
+	PCICR ^= (1<<PCIE0);            // enabling interrupts for PCINT0 (portb)
+	PCMSK0 ^= (1<<PB0) | (1<<PB7);  // enabling interrupts on port b bit 1 and 7
+	
 	init_stdio(0, 10000000L);
 	sei();
 
@@ -82,4 +86,20 @@ void ports_configuration()
 	DDRA = 0xff;
 	DDRB = 0x00;
 	PORTA = 0xff;
+}
+
+
+ISR(PCINT0_vect)
+{
+	uint8_t port_b_state = ~PINB;
+	
+	//board to be declared globally
+	board_t board = board_create(PORTA, DDRA, PINB, DDRB);
+
+	switch (port_b_state)
+	{
+		case ((1<<PB0) | (1<<PB7)):
+		board_wait_for_button_press(board);
+		break;
+	}
 }
