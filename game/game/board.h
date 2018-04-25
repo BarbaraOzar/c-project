@@ -11,9 +11,10 @@
 
 typedef struct board * board_t;
 
-board_t board_create(volatile int *port);
+board_t board_create(volatile int *port_output, volatile int *ddr_output, volatile int *input_pin, volatile int *ddr_input);
 void board_turn_on_led(board_t self, int number);
-
-
+int board_get_input(board_t self);
+void board_wait_for_button_press(board_t self);
+void board_clear(board_t self);
 
 #endif /* BOARD_H_ */
