@@ -173,6 +173,44 @@ static char * test_expand_elements()
 	return 0;
 }
 
+static char * test_compare()
+{
+	int size = 5;
+	int i, check;
+	seq_t item = seq_create(size);
+	
+	seq_add_to(item, 1);
+	seq_add_to(item, 2);
+	seq_add_to(item, 3);
+	seq_add_to(item, 4);
+	
+	for (i = 1; i <= 4; i++)
+	{
+		check = seq_compare(item, i, i-1);
+		mu_assert("values in arrays != test_compares", check == 1);
+	}
+	return 0;
+}
+
+static char * test_compare_fail()
+{
+	int size = 5;
+	int i, check;
+	seq_t item = seq_create(size);
+	
+	seq_add_to(item, 1);
+	seq_add_to(item, 2);
+	seq_add_to(item, 3);
+	seq_add_to(item, 4);
+	
+	for (i = 1; i <= 4; i++)
+	{
+		check = seq_compare(item, 10, i-1);
+		mu_assert("values in arrays != test_compares", check == 0);
+	}
+	return 0;
+}
+
 char * all_sequence_tests()
 {
 	mu_run_test(test_seq_create);
@@ -183,5 +221,7 @@ char * all_sequence_tests()
 	mu_run_test(test_expand_size);
 	mu_run_test(test_seq_add_beyond_capacity);
 	mu_run_test(test_expand_elements);
+	mu_run_test(test_compare);
+	mu_run_test(test_compare_fail);
 	return 0;
 }

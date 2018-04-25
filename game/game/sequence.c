@@ -103,3 +103,13 @@ seq_t seq_expand(seq_t self)
 	copy_seq(self, new_seq);
 	return new_seq;
 }
+
+int seq_compare(seq_t self, int value, int index) {
+	int check = 0;
+	int* array_p = get_array(self);
+	array_p += index;
+	if(*array_p == value) {
+		check = 1;
+	}
+	return check;
+}
