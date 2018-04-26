@@ -76,7 +76,6 @@ void seq_display_only(seq_t self, board_t board, int delay, int clear)
 	for(i = 0; i < get_size(self); i++)
 	{
 		d = delay;
-		printf("\rled no: %d\n", *array_p);
 		board_turn_on_led(board, *array_p);
 		
 		while(d > 0)
