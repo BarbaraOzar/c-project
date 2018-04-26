@@ -27,6 +27,76 @@ static char * test_seq_create()
 	return 0;
 }
 
+static char * test_seq_get_array ()
+{
+	int size = 5, i, value, *array_start;
+	seq_t item = seq_create(size);
+
+	seq_add_to(item, 1);
+	seq_add_to(item, 2);
+	seq_add_to(item, 3);
+	
+	array_start = get_array(item);
+	
+	for(i = 0; i < 3; i++)
+	{
+		value = *array_start;
+		mu_assert("element != expected", value == i + 1);
+		array_start++;
+	}
+	return 0;
+}
+
+static char * test_get_max_size()
+{
+	int size = 5, i, value;
+	seq_t item = seq_create(size);
+
+	value = get_max_size(item);
+	mu_assert("the max size of the array does not match", value == 5);
+	
+	return 0;
+}
+
+static char * test_get_size_zero()
+{
+	int size = 5, i, value;
+	seq_t item = seq_create(size);
+
+	value = get_size(item);
+	mu_assert("the max size of the array does not match", value == 0);
+	
+	return 0;
+}
+
+static char * test_get_size_some()
+{
+	int size = 5, i, value;
+	seq_t item = seq_create(size);
+
+	for(i = 1; i <= 5; i++) {
+		seq_add_to(item, 1);
+		value = get_size(item);
+		mu_assert("the max size of the array does not match", value == i);
+	}
+	
+	return 0;
+}
+
+static char * test_increment_sequence()
+{
+	int size = 5, i, value;
+	seq_t item = seq_create(size);
+	
+	for(i = 0; i < 5; i++)
+	{
+		value = get_size(item);
+		mu_assert("the size of the array does not match", value == i);
+		increment_size(item);
+	}
+	return 0;
+}
+
 static char * test_seq_add_zero () 
 {
 	int size = 5, value, *array_start;
@@ -334,6 +404,11 @@ static char * test_seq_display_only_seq_fail()
 char * all_sequence_tests()
 {
 	mu_run_test(test_seq_create);
+	mu_run_test(test_seq_get_array);
+	mu_run_test(test_get_max_size);
+	mu_run_test(test_get_size_zero);
+	mu_run_test(test_get_size_some);
+	mu_run_test(test_increment_sequence);
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
 	mu_run_test(test_seq_add_multiple);

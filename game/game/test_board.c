@@ -79,6 +79,17 @@ static char * test_board_get_input_multiple_buttons()
 	return 0;
 }
 
+static char * test_board_get_wait_for_input_fail()
+{
+	volatile uint8_t input_pin = 0b11111110, port_output = 0;
+	int input;
+	
+	board_t board = board_create(&port_output, 0, &input_pin, 0);
+	board_wait_for_button_press(board);
+	input = board_get_input(board);
+	mu_assert("waits for input", input == 0);
+	return 0;
+}
 
 char * all_board_tests()
 {
@@ -89,5 +100,6 @@ char * all_board_tests()
 	mu_run_test(test_board_get_input0);
 	mu_run_test(test_board_get_input5);
 	mu_run_test(test_board_get_input_multiple_buttons);
+	mu_run_test(test_board_get_wait_for_input_fail);
 	return 0;
 }
