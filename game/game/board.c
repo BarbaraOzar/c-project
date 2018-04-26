@@ -48,7 +48,7 @@ int board_get_input(board_t self)
 		input = (input>>1);
 		i++;
 	}
-	_delay_ms(500);
+	_delay_ms(300);
 	return i-1;	
 }
 

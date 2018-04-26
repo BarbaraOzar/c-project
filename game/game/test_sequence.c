@@ -10,6 +10,7 @@
 #include "sequence.h"
 #define F_CPU 10000000L
 #include <util/delay.h>
+#include <stdlib.h>
 
 static char * test_seq_create()
 {
@@ -24,7 +25,6 @@ static char * test_seq_create()
 		mu_assert("element != 0", value == 0);
 		array_start++;
 	}
-	free(item);
 	return 0;
 }
 
@@ -45,31 +45,27 @@ static char * test_seq_get_array ()
 		mu_assert("element != expected", value == i + 1);
 		array_start++;
 	}
-	free(item);
 	return 0;
 }
 
 static char * test_get_max_size()
 {
-	int size = 5, i, value;
+	int size = 5, value;
 	seq_t item = seq_create(size);
 
 	value = get_max_size(item);
 	mu_assert("the max size of the array does not match", value == 5);
-	
-	free(item);
 	return 0;
 }
 
 static char * test_get_size_zero()
 {
-	int size = 5, i, value;
+	int size = 5, value;
 	seq_t item = seq_create(size);
 
 	value = get_size(item);
 	mu_assert("the max size of the array does not match", value == 0);
 	
-	free(item);
 	return 0;
 }
 
@@ -83,8 +79,6 @@ static char * test_get_size_some()
 		value = get_size(item);
 		mu_assert("the max size of the array does not match", value == i);
 	}
-	
-	free(item);
 	return 0;
 }
 
@@ -99,7 +93,6 @@ static char * test_increment_sequence()
 		mu_assert("the size of the array does not match", value == i);
 		increment_size(item);
 	}
-	free(item);
 	return 0;
 }
 
@@ -113,8 +106,6 @@ static char * test_seq_add_zero()
 	array_start = get_array(item);
 	value = *array_start;
 	mu_assert("element != 0", value == 0);
-	
-	free(item);
 	return 0;
 }
 
@@ -128,8 +119,6 @@ static char * test_seq_add_one()
 
 	value = *array_start
 	mu_assert("element != 1", value == 1);
-	
-	free(item);	
 	return 0;
 }
 
@@ -152,8 +141,6 @@ static char * test_seq_add_multiple()
 		array_start++;
 		control++;
 	}
-		
-	free(item);	
 	return 0;
 }
 
@@ -182,8 +169,6 @@ static char * test_seq_add_beyond_capacity()
 		array_p++;
 		control++;
 	}
-	
-	free(item);
 	return 0;
 }
 
@@ -219,9 +204,6 @@ static char * test_seq_copy()
 		mu_assert("elements are not equal", i == value);
 		array2_p++;
 	}
-	
-	free(item1);
-	free(item2);
 	return 0;
 }
 
@@ -233,7 +215,6 @@ static char * test_expand_size()
 	value1 = get_max_size(item);
 	
 	mu_assert("\rSeq. has not expanded\n", value1 == 55);
-	free(item);
 	return 0;
 }
 
@@ -255,7 +236,6 @@ static char * test_expand_elements()
 		array_p++;
 	}
 	mu_assert("last value != 0 test_expand_elements", *array_p == 0);
-	free(item);
 	return 0;
 }
 
@@ -275,7 +255,6 @@ static char * test_compare()
 		check = seq_compare(item, i, i-1);
 		mu_assert("values in arrays != test_compares", check == 1);
 	}
-	free(item);
 	return 0;
 }
 
@@ -295,8 +274,6 @@ static char * test_compare_fail()
 		check = seq_compare(item, 10, i-1);
 		mu_assert("values in arrays != test_compares", check == 0);
 	}
-	
-	free(item);
 	return 0;
 }
 
@@ -309,9 +286,8 @@ static char * test_seq_get_value0()
 	seq_add_to(item, 3);
 	seq_add_to(item, 4);
 	int value = seq_get_value(item, 5);
-	printf("value %d", value);
+	printf("\rvalue %d\n", value);
 	mu_assert("value != 0; test_seq_get_value0", value == 0);
-	free(item);	
 	return 0;
 }
 
@@ -325,8 +301,6 @@ static char * test_seq_get_value1()
 	seq_add_to(item, 4);
 	int value = seq_get_value(item, 0);
 	mu_assert("value != 1; test_seq_get_value1", value == 1);
-	
-	free(item);
 	return 0;
 }
 
@@ -340,8 +314,6 @@ static char * test_seq_get_value_fail()
 	seq_add_to(item, 4);
 	int value = seq_get_value(item, 2);
 	mu_assert("value == 2; test_seq_get_value_fail", value != 2);
-	
-	free(item);
 	return 0;
 }
 
@@ -356,8 +328,6 @@ static char * test_seq_display_only0()
 	seq_display_only(item, board, 1, 0);
 	
 	mu_assert("result != 0b11111111; test_seq_display_only0", result == 0b11111111);
-	
-	free(item);
 	return 0;
 }
 
@@ -374,7 +344,6 @@ static char * test_seq_display_only1()
 	
 	mu_assert("result != 0b11111110; test_seq_display_only1", result == 0b11111110);
 	
-	free(item);
 	return 0;
 }
 
@@ -393,7 +362,6 @@ static char * test_seq_display_only_seq1()
 	
 	mu_assert("result != 0b11110001; test_seq_display_only_seq1", result == 0b11110001);
 	
-	free(item);
 	return 0;
 }
 
@@ -413,7 +381,6 @@ static char * test_seq_display_only_seq2()
 	
 	mu_assert("result != 0b01010101; test_seq_display_only_seq2", result == 0b01010101);
 	
-	free(item);
 	return 0;
 }
 
@@ -431,8 +398,6 @@ static char * test_seq_display_only_seq_fail()
 	seq_display_only(item, board, 1, 1);
 	
 	mu_assert("result != 0b11110001; test_seq_display_seq_fail", result != 0b11110001);
-	
-	free(item);
 	return 0;
 }
 
@@ -447,7 +412,7 @@ char * all_sequence_tests()
 	mu_run_test(test_seq_add_zero);
 	mu_run_test(test_seq_add_one);
 	mu_run_test(test_seq_add_multiple);
-	mu_run_test(test_seq_copy);
+	
 	mu_run_test(test_expand_size);
 	mu_run_test(test_seq_add_beyond_capacity);
 	mu_run_test(test_expand_elements);
@@ -461,5 +426,6 @@ char * all_sequence_tests()
 	mu_run_test(test_seq_display_only_seq1);
 	mu_run_test(test_seq_display_only_seq2);
 	mu_run_test(test_seq_display_only_seq_fail);
+	mu_run_test(test_seq_copy);
 	return 0;
 }

@@ -139,3 +139,9 @@ int seq_get_value(seq_t self, int index)
 	array_p += index;
 	return *array_p;
 }
+
+void seq_destroy(seq_t self) 
+{
+	//free(self->array);
+	//free(self);
+}

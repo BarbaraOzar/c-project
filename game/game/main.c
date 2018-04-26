@@ -46,6 +46,10 @@ int main(void)
 	seq_add_to(error, 3);
 	seq_add_to(error, 4);
 		
+	// set up board struct
+	PORTA = 0xff;
+	board_t board = board_create(&PORTA, &DDRA, &PINB, &DDRB);
+	
 	while(1)
 	{
 		int level = 3, input, running = 0, comparison, game_on = 1;
@@ -56,10 +60,6 @@ int main(void)
 		{ 
 			seq_add_to(game_sequence, rand() % 8);
 		}
-		
-		// set up board struct
-		PORTA = 0xff;
-		board_t board = board_create(&PORTA, &DDRA, &PINB, &DDRB);
 		
 		// welcome
 		seq_display(welcome, board, 3, 0);
@@ -88,7 +88,11 @@ int main(void)
 			running = 0;
 			seq_add_to(game_sequence, rand() % 8 );
 		}
+		board_clear(board);
+		seq_destroy(game_sequence);
 	}
+	seq_destroy(welcome);
+	seq_destroy(error);
 }
 #endif
 
