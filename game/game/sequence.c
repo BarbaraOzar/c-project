@@ -63,19 +63,30 @@ void seq_add_to(seq_t self, int value)
 	increment_size(self);
 }
 
-void seq_display(seq_t self, board_t board)
+void seq_display(seq_t self, board_t board, int delay, int clear)
 {
-	int i;
+	int i, d;
 	int* array_p = get_array(self);
 	for(i = 0; i < get_size(self); i++)
 	{
+		d = delay;
 		printf("\rled no: %d\n", *array_p);
 		board_turn_on_led(board, *array_p);
-		_delay_ms(750);
-		board_clear(board);
-		_delay_ms(200);
+		
+		while(d > 0)
+		{
+			_delay_ms(100);
+			d--;
+		}
+		
+		if(clear) 
+		{
+			board_clear(board);
+			_delay_ms(200);
+		}
 		array_p++;
 	}
+	board_clear(board);
 }
 
 seq_t copy_seq(seq_t self, seq_t new_self)
