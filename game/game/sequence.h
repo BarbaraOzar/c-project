@@ -19,12 +19,13 @@ void increment_size(seq_t self);
 
 seq_t seq_create(int size);
 void seq_destroy(seq_t self);
-
 void seq_add_to(seq_t self, int value);
 void seq_display(seq_t self, board_t board, int delay, int clear);
+void seq_display_only(seq_t self, board_t board, int delay, int clear);
 seq_t seq_expand(seq_t self);
-seq_t copy_seq(seq_t self, seq_t new_self);
-
+seq_t seq_copy(seq_t self, seq_t new_self);
 int seq_compare(seq_t self, int value, int index);
+int seq_get_value(seq_t self, int index);
+
 
 #endif /* SEQUENCE_H_ */

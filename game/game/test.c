@@ -17,7 +17,7 @@ int tests_run = 0;
 
 static char * all_tests()
 {
-	//mu_run_suite(all_sequence_tests);
+	mu_run_suite(all_sequence_tests);
 	mu_run_suite(all_board_tests);
 	return 0;
 }
@@ -27,11 +27,7 @@ int main()
 {
 	init_stdio(0, 10000000L);
 	sei();
-	
-	DDRA = 0xff;
-	PORTA = 0xff;
-	PORTA = ~2;
-	
+		
 	char *result = all_tests();
 	if (result != 0) {
 		printf("error: %s\n\r", result);

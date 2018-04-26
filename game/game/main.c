@@ -5,6 +5,7 @@
  * Author : Dell
  */ 
 
+#define F_CPU 10000000L
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
@@ -12,7 +13,9 @@
 #include "atmega2560_drivers.h"
 #include "sequence.h"
 #include <time.h>
+#include <util/delay.h>
 
+void wait_and_clear(board_t board);
 
 #ifndef TEST
 int main(void)
@@ -28,7 +31,7 @@ int main(void)
 	//create Welcome sequence
 	int i;
 	seq_t welcome = seq_create(8);
-	for(i=0; i<get_max_size(welcome); i++)
+	for(i = 0; i < get_max_size(welcome); i++)
 	{
 		seq_add_to(welcome, i);
 	}
@@ -46,44 +49,49 @@ int main(void)
 		
 	while(1)
 	{
-		int level=3, input, i, running=0, comparison, control=1 ;
+		int level = 3, input, running = 0, comparison, game_on = 1 ;
 		seq_t game_sequence = seq_create(20);
-		for (i = 0 ; i<level ; i++)
+		for (i = 0 ; i < level ; i++)
 		{ 
 			seq_add_to(game_sequence, rand() % 8);
 		}
 		
 		PORTA = 0xff;
-		board_t b = board_create(&PORTA, &DDRA, &PINB, &DDRB);
+		board_t board = board_create(&PORTA, &DDRA, &PINB, &DDRB);
 		
-		printf("\rdisplay welcome\n");
+		seq_display(welcome, board, 7, 0);
+		board_wait_for_button_press(board);
 		
-		seq_display(welcome, b, 7, 0);
-		board_wait_for_button_press(b);
-		
-		while(control==1)
+		while(game_on == 1)
 		{
-			printf("\rgame sequence\n");
-			seq_display(game_sequence, b, 10, 1);
-			for(i = 0; i<get_size(game_sequence); i++)
+			seq_display(game_sequence, board, 10, 1);
+			
+			for(i = 0; i < get_size(game_sequence); i++)
 			{
-				board_wait_for_button_press(b);
-				input = board_get_input(b);
-				printf("\rinput %d\n", input);
+				board_wait_for_button_press(board);
+				input = board_get_input(board);
 				comparison = seq_compare(game_sequence, input, running++);
+				
 				if (comparison == 0)
 				{
-					control=0;
-					seq_display(error, b, 4, 0);
+					game_on = 0;
+					board_turn_on_led(board, seq_get_value(game_sequence, --running));
+					wait_and_clear(board);
+					seq_display(error, board, 4, 0);
 					break;
 				}
 			}
-			running=0;
+			running = 0;
 			seq_add_to(game_sequence, rand() % 8 );
 		}
-			
 	}
 }
-
 #endif
+
+void wait_and_clear(board_t board)
+{
+	_delay_ms(800);
+	board_clear(board);
+	_delay_ms(800);
+}
 

@@ -43,7 +43,6 @@ static char * test_no_input()
 	volatile uint8_t input_pin = 0b11111111, port_output = 0;
 	int input;
 	board_t board = board_create(&port_output, 0, &input_pin, 0);
-	board_clear(board);
 	input = board_get_input(board);
 	mu_assert("result != -1; test_no_input", input == -1);
 	return 0;
