@@ -13,7 +13,6 @@
 #include "sequence.h"
 #include <time.h>
 
-void ports_configuration();
 
 #ifndef TEST
 int main(void)
@@ -54,16 +53,18 @@ int main(void)
 			seq_add_to(game_sequence, rand() % 8);
 		}
 		
+		PORTA = 0xff;
 		board_t b = board_create(&PORTA, &DDRA, &PINB, &DDRB);
 		
 		printf("\rdisplay welcome\n");
-		seq_display(welcome, b);
+		
+		seq_display(welcome, b, 7, 0);
 		board_wait_for_button_press(b);
 		
 		while(control==1)
 		{
 			printf("\rgame sequence\n");
-			seq_display(game_sequence, b);
+			seq_display(game_sequence, b, 10, 1);
 			for(i = 0; i<get_size(game_sequence); i++)
 			{
 				board_wait_for_button_press(b);
@@ -73,7 +74,7 @@ int main(void)
 				if (comparison == 0)
 				{
 					control=0;
-					seq_display(error,b);
+					seq_display(error, b, 4, 0);
 					break;
 				}
 			}
@@ -86,9 +87,3 @@ int main(void)
 
 #endif
 
-void ports_configuration() 
-{
-	DDRA = 0xff;
-	DDRB = 0x00;
-	PORTA = 0xff;
-}
