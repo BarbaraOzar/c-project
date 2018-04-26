@@ -43,7 +43,6 @@ static char * test_no_input()
 	volatile uint8_t input_pin = 0b11111111, port_output = 0;
 	int input;
 	board_t board = board_create(&port_output, 0, &input_pin, 0);
-	board_clear(board);
 	input = board_get_input(board);
 	mu_assert("result != -1; test_no_input", input == -1);
 	return 0;
@@ -80,6 +79,27 @@ static char * test_board_get_input_multiple_buttons()
 	return 0;
 }
 
+static char * test_board_get_wait_for_input_fail()
+{
+	volatile uint8_t input_pin = 0b11111110, port_output = 0;
+	int input;
+	
+	board_t board = board_create(&port_output, 0, &input_pin, 0);
+	board_wait_for_button_press(board);
+	input = board_get_input(board);
+	mu_assert("waits for input", input == 0);
+	return 0;
+}
+
+static char * test_board_clear()
+{
+	volatile uint8_t input_pin = 0b11111101, port_output = 0;
+	board_t board = board_create(&port_output, 0, &input_pin, 0);
+	
+	board_clear(board);
+	mu_assert("result != -1; test_board_clear", port_output == 0b11111111);
+	return 0;
+}
 
 char * all_board_tests()
 {
@@ -90,5 +110,7 @@ char * all_board_tests()
 	mu_run_test(test_board_get_input0);
 	mu_run_test(test_board_get_input5);
 	mu_run_test(test_board_get_input_multiple_buttons);
+	mu_run_test(test_board_get_wait_for_input_fail);
+	mu_run_test(test_board_clear);
 	return 0;
 }

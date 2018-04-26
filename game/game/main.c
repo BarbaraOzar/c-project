@@ -5,6 +5,7 @@
  * Author : Dell
  */ 
 
+#define F_CPU 10000000L
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
@@ -12,33 +13,29 @@
 #include "atmega2560_drivers.h"
 #include "sequence.h"
 #include <time.h>
+#include <util/delay.h>
 
+void wait_and_clear(board_t board);
 
 #ifndef TEST
 int main(void)
 {
-
-	//INTERRUPT SETUP
-	PCICR ^= (1<<PCIE0);            // enabling interrupts for PCINT0 (portb)
-	PCMSK0 ^= (1<<PB0) | (1<<PB7);  // enabling interrupts on port b bit 1 and 7
-	
 	init_stdio(0, 10000000L);
 	sei();
 	
-	//random set up
-	
+	// random generator set up
 	time_t msec = time(NULL) * 1000;
 	srand((unsigned) time(&msec));
 	
-	//create Welcome sequence
+	// create welcome sequence
 	int i;
 	seq_t welcome = seq_create(8);
-	for(i=0; i<get_max_size(welcome); i++)
+	for(i = 0; i < get_max_size(welcome); i++)
 	{
 		seq_add_to(welcome, i);
 	}
 
-	//create Error sequence
+	// create error sequence
 	seq_t error = seq_create(8);
 	seq_add_to(error, 0);
 	seq_add_to(error, 7);
@@ -51,61 +48,55 @@ int main(void)
 		
 	while(1)
 	{
-		int level=3, input, i, running=0, comparison, control=1 ;
+		int level = 3, input, running = 0, comparison, game_on = 1;
+		
+		// set up sequence struct
 		seq_t game_sequence = seq_create(20);
-		for (i = 0 ; i<level ; i++)
+		for (i = 0 ; i < level ; i++)
 		{ 
 			seq_add_to(game_sequence, rand() % 8);
 		}
 		
+		// set up board struct
 		PORTA = 0xff;
-		board_t b = board_create(&PORTA, &DDRA, &PINB, &DDRB);
+		board_t board = board_create(&PORTA, &DDRA, &PINB, &DDRB);
 		
-		printf("\rdisplay welcome\n");
+		// welcome
+		seq_display(welcome, board, 7, 0);
+		board_wait_for_button_press(board);
 		
-		seq_display(welcome, b, 7, 0);
-		board_wait_for_button_press(b);
-		
-		while(control==1)
+		// game
+		while(game_on == 1)
 		{
-			printf("\rgame sequence\n");
-			seq_display(game_sequence, b, 10, 1);
-			for(i = 0; i<get_size(game_sequence); i++)
+			seq_display(game_sequence, board, 10, 1);
+			
+			for(i = 0; i < get_size(game_sequence); i++)
 			{
-				board_wait_for_button_press(b);
-				input = board_get_input(b);
-				printf("\rinput %d\n", input);
+				board_wait_for_button_press(board);
+				input = board_get_input(board);
 				comparison = seq_compare(game_sequence, input, running++);
+				
 				if (comparison == 0)
 				{
-					control=0;
-					seq_display(error, b, 4, 0);
+					game_on = 0;
+					board_turn_on_led(board, seq_get_value(game_sequence, --running));
+					wait_and_clear(board);
+					seq_display(error, board, 4, 0);
 					break;
 				}
 			}
-			running=0;
+			running = 0;
 			seq_add_to(game_sequence, rand() % 8 );
 		}
-			
 	}
 }
-
 #endif
 
-
-
-ISR(PCINT0_vect)
+void wait_and_clear(board_t board)
 {
-	uint8_t port_b_state = ~PINB;
-	
-	//board to be declared globally
-	board_t board = board_create(PORTA, DDRA, PINB, DDRB);
+	_delay_ms(800);
+	board_clear(board);
+	_delay_ms(800);
 
-	switch (port_b_state)
-	{
-		case ( (1<<PB0) | (1<<PB7) ):
-		board_wait_for_button_press(board);
-		break;
-	}
 }
 

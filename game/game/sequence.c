@@ -65,12 +65,17 @@ void seq_add_to(seq_t self, int value)
 
 void seq_display(seq_t self, board_t board, int delay, int clear)
 {
+	seq_display_only(self, board, delay, clear);
+	board_clear(board);
+}
+
+void seq_display_only(seq_t self, board_t board, int delay, int clear)
+{
 	int i, d;
 	int* array_p = get_array(self);
 	for(i = 0; i < get_size(self); i++)
 	{
 		d = delay;
-		printf("\rled no: %d\n", *array_p);
 		board_turn_on_led(board, *array_p);
 		
 		while(d > 0)
@@ -79,17 +84,16 @@ void seq_display(seq_t self, board_t board, int delay, int clear)
 			d--;
 		}
 		
-		if(clear) 
+		if(clear)
 		{
 			board_clear(board);
 			_delay_ms(200);
 		}
 		array_p++;
 	}
-	board_clear(board);
 }
 
-seq_t copy_seq(seq_t self, seq_t new_self)
+seq_t seq_copy(seq_t self, seq_t new_self)
 {
 	int i;
 	
@@ -115,16 +119,23 @@ seq_t seq_expand(seq_t self)
 	int new_size = get_max_size(self) + 50 ; // access size field of self
 	seq_t new_seq = seq_create(new_size);
 	
-	copy_seq(self, new_seq);
+	seq_copy(self, new_seq);
 	return new_seq;
 }
 
-int seq_compare(seq_t self, int value, int index) {
-	int check = 0;
+int seq_compare(seq_t self, int value, int index) 
+{
 	int* array_p = get_array(self);
 	array_p += index;
 	if(*array_p == value) {
-		check = 1;
+		return 1;
 	}
-	return check;
+	return 0;
+}
+
+int seq_get_value(seq_t self, int index)
+{
+	int* array_p = get_array(self);
+	array_p += index;
+	return *array_p;
 }
