@@ -91,6 +91,16 @@ static char * test_board_get_wait_for_input_fail()
 	return 0;
 }
 
+static char * test_board_clear()
+{
+	volatile uint8_t input_pin = 0b11111101, port_output = 0;
+	board_t board = board_create(&port_output, 0, &input_pin, 0);
+	
+	board_clear(board);
+	mu_assert("result != -1; test_board_clear", port_output == 0b11111111);
+	return 0;
+}
+
 char * all_board_tests()
 {
 	mu_run_test(test_board_turn_on_led0);
@@ -101,5 +111,6 @@ char * all_board_tests()
 	mu_run_test(test_board_get_input5);
 	mu_run_test(test_board_get_input_multiple_buttons);
 	mu_run_test(test_board_get_wait_for_input_fail);
+	mu_run_test(test_board_clear);
 	return 0;
 }

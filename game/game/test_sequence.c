@@ -302,7 +302,7 @@ static char * test_seq_get_value1()
 	seq_add_to(item, 2);
 	seq_add_to(item, 3);
 	seq_add_to(item, 4);
-	int value = seq_get_value(item, 1);
+	int value = seq_get_value(item, 0);
 	mu_assert("value != 1; test_seq_get_value1", value == 1);
 	return 0;
 }
@@ -342,8 +342,8 @@ static char * test_seq_display_only1()
 	
 	int size = 5;
 	seq_t item = seq_create(size);
-	seq_display_only(item, board, 1, 0);
 	seq_add_to(item, 0);
+	seq_display_only(item, board, 1, 0);
 	
 	mu_assert("result != 0b11111110; test_seq_display_only1", result == 0b11111110);
 	return 0;
@@ -357,10 +357,10 @@ static char * test_seq_display_only_seq1()
 	
 	int size = 5;
 	seq_t item = seq_create(size);
-	seq_display_only(item, board, 1, 0);
 	seq_add_to(item, 1);
 	seq_add_to(item, 2);
 	seq_add_to(item, 3);
+	seq_display_only(item, board, 1, 0);
 	
 	mu_assert("result != 0b11110001; test_seq_display_only_seq1", result == 0b11110001);
 	return 0;
@@ -374,11 +374,11 @@ static char * test_seq_display_only_seq2()
 	
 	int size = 5;
 	seq_t item = seq_create(size);
-	seq_display_only(item, board, 1, 0);
 	seq_add_to(item, 1);
 	seq_add_to(item, 3);
 	seq_add_to(item, 5);
 	seq_add_to(item, 7);
+	seq_display_only(item, board, 1, 0);
 	
 	mu_assert("result != 0b01010101; test_seq_display_only_seq2", result == 0b01010101);
 	return 0;
@@ -392,10 +392,10 @@ static char * test_seq_display_only_seq_fail()
 	
 	int size = 5;
 	seq_t item = seq_create(size);
-	seq_display_only(item, board, 1, 1);
 	seq_add_to(item, 1);
 	seq_add_to(item, 2);
 	seq_add_to(item, 3);
+	seq_display_only(item, board, 1, 1);
 	
 	mu_assert("result != 0b11110001; test_seq_display_seq_fail", result != 0b11110001);
 	return 0;
