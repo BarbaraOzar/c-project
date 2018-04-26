@@ -10,7 +10,7 @@
 
 static char * test_board_turn_on_led0()
 {
-	volatile int result = 0;
+	volatile uint8_t result = 0;
 	board_t board = board_create(&result, 0, 0, 0);
 	board_clear(board);
 	board_turn_on_led(board, 0);
@@ -20,7 +20,7 @@ static char * test_board_turn_on_led0()
 
 static char * test_board_turn_on_led1()
 {
-	volatile int result = 0;
+	volatile uint8_t result = 0;
 	board_t board = board_create(&result, 0, 0, 0);
 	board_clear(board);
 	board_turn_on_led(board, 1);
@@ -30,7 +30,7 @@ static char * test_board_turn_on_led1()
 
 static char * test_board_turn_on_led5()
 {
-	volatile int result = 0;
+	volatile uint8_t result = 0;
 	board_t board = board_create(&result, 0, 0, 0);
 	board_clear(board);
 	board_turn_on_led(board, 5);
@@ -40,7 +40,7 @@ static char * test_board_turn_on_led5()
 
 static char * test_no_input()
 {
-	volatile int input_pin = 0b11111111, port_output = 0;
+	volatile uint8_t input_pin = 0b11111111, port_output = 0;
 	int input;
 	board_t board = board_create(&port_output, 0, &input_pin, 0);
 	board_clear(board);
@@ -51,7 +51,7 @@ static char * test_no_input()
 
 static char * test_board_get_input0() 
 {
-	volatile int input_pin = 0b11111110, port_output = 0;
+	volatile uint8_t input_pin = 0b11111110, port_output = 0;
 	int input;
 	board_t board = board_create(&port_output, 0, &input_pin, 0);
 	input = board_get_input(board);
@@ -61,7 +61,7 @@ static char * test_board_get_input0()
 
 static char * test_board_get_input5()
 {
-	volatile int input_pin = 0b11011111, port_output = 0;
+	volatile uint8_t input_pin = 0b11011111, port_output = 0;
 	int input;
 	board_t board = board_create(&port_output, 0, &input_pin, 0);
 	board_turn_on_led(board, 5);
@@ -72,7 +72,7 @@ static char * test_board_get_input5()
 
 static char * test_board_get_input_multiple_buttons()
 {
-	volatile int input_pin = 0b00111111, port_output = 0;
+	volatile uint8_t input_pin = 0b00111111, port_output = 0;
 	int input;
 	board_t board = board_create(&port_output, 0, &input_pin, 0);
 	input = board_get_input(board);

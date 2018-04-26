@@ -21,7 +21,7 @@ struct board
 	volatile int *ddr_input;
 };
 
-board_t board_create(volatile int *port_output, volatile int *ddr_output, volatile int *input_pin, volatile int *ddr_input)
+board_t board_create(volatile uint8_t *port_output, volatile uint8_t *ddr_output, volatile uint8_t *input_pin, volatile uint8_t *ddr_input)
 {
 	*ddr_output = 0xff;
 	*ddr_input = 0x00;
@@ -48,6 +48,7 @@ int board_get_input(board_t self)
 		input = (input>>1);
 		i++;
 	}
+	_delay_ms(500);
 	return i-1;	
 }
 

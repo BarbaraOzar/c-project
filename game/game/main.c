@@ -11,21 +11,26 @@
 #include <stdlib.h>
 #include "atmega2560_drivers.h"
 #include "sequence.h"
+#include <time.h>
 
 void ports_configuration();
 
 #ifndef TEST
 int main(void)
 {
-	ports_configuration();
-	
 	init_stdio(0, 10000000L);
 	sei();
-
+	
+	//random set up
+	
+	time_t msec = time(NULL) * 1000;
+	srand((unsigned) time(&msec));
+	
 	//create Welcome sequence
 	int i;
 	seq_t welcome = seq_create(8);
-	for(i=0; i<get_max_size(welcome); i++){
+	for(i=0; i<get_max_size(welcome); i++)
+	{
 		seq_add_to(welcome, i);
 	}
 
@@ -49,7 +54,7 @@ int main(void)
 			seq_add_to(game_sequence, rand() % 8);
 		}
 		
-		board_t b = board_create(PORTA, DDRA, PINB, DDRB);
+		board_t b = board_create(&PORTA, &DDRA, &PINB, &DDRB);
 		
 		printf("\rdisplay welcome\n");
 		seq_display(welcome, b);
@@ -59,10 +64,14 @@ int main(void)
 		{
 			printf("\rgame sequence\n");
 			seq_display(game_sequence, b);
-			for(i = 0; i<get_size(game_sequence); i++){
+			for(i = 0; i<get_size(game_sequence); i++)
+			{
+				board_wait_for_button_press(b);
 				input = board_get_input(b);
+				printf("\rinput %d\n", input);
 				comparison = seq_compare(game_sequence, input, running++);
-				if (comparison == 0){
+				if (comparison == 0)
+				{
 					control=0;
 					seq_display(error,b);
 					break;
