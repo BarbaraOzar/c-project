@@ -71,8 +71,9 @@ void seq_display(seq_t self, board_t board)
 	{
 		printf("\rled no: %d\n", *array_p);
 		board_turn_on_led(board, *array_p);
-		_delay_ms(1000);
+		_delay_ms(750);
 		board_clear(board);
+		_delay_ms(200);
 		array_p++;
 	}
 }
