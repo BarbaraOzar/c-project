@@ -98,7 +98,7 @@ ISR(PCINT0_vect)
 
 	switch (port_b_state)
 	{
-		case ((1<<PB0) | (1<<PB7)):
+		case ( (1<<PB0) | (1<<PB7) ):
 		board_wait_for_button_press(board);
 		break;
 	}
