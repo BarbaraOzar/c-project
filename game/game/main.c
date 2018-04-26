@@ -62,13 +62,13 @@ int main(void)
 		board_t board = board_create(&PORTA, &DDRA, &PINB, &DDRB);
 		
 		// welcome
-		seq_display(welcome, board, 7, 0);
+		seq_display(welcome, board, 3, 0);
 		board_wait_for_button_press(board);
 		
 		// game
 		while(game_on == 1)
 		{
-			seq_display(game_sequence, board, 10, 1);
+			seq_display(game_sequence, board, 7, 1);
 			
 			for(i = 0; i < get_size(game_sequence); i++)
 			{
@@ -81,7 +81,7 @@ int main(void)
 					game_on = 0;
 					board_turn_on_led(board, seq_get_value(game_sequence, --running));
 					wait_and_clear(board);
-					seq_display(error, board, 4, 0);
+					seq_display(error, board, 3, 0);
 					break;
 				}
 			}
