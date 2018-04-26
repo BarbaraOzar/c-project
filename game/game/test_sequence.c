@@ -97,7 +97,7 @@ static char * test_increment_sequence()
 	return 0;
 }
 
-static char * test_seq_add_zero () 
+static char * test_seq_add_zero() 
 {
 	int size = 5, value, *array_start;
 
@@ -110,7 +110,7 @@ static char * test_seq_add_zero ()
 	return 0;
 }
 
-static char * test_seq_add_one ()
+static char * test_seq_add_one()
 {
 	int size = 5, value, *array_start;
 	seq_t item = seq_create(size);
@@ -124,7 +124,7 @@ static char * test_seq_add_one ()
 	return 0;
 }
 
-static char * test_seq_add_multiple ()
+static char * test_seq_add_multiple()
 {
 	int size = 5, i, value, *array_start, control;
 	seq_t item = seq_create(size);
@@ -147,7 +147,7 @@ static char * test_seq_add_multiple ()
 	return 0;
 }
 
-static char * test_seq_add_beyond_capacity ()
+static char * test_seq_add_beyond_capacity()
 {
 	int size = 5;
 	int i, value, control;

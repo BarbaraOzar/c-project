@@ -23,12 +23,11 @@ int main(void)
 	init_stdio(0, 10000000L);
 	sei();
 	
-	//random set up
-	
+	// random generator set up
 	time_t msec = time(NULL) * 1000;
 	srand((unsigned) time(&msec));
 	
-	//create Welcome sequence
+	// create welcome sequence
 	int i;
 	seq_t welcome = seq_create(8);
 	for(i = 0; i < get_max_size(welcome); i++)
@@ -36,7 +35,7 @@ int main(void)
 		seq_add_to(welcome, i);
 	}
 
-	//create Error sequence
+	// create error sequence
 	seq_t error = seq_create(8);
 	seq_add_to(error, 0);
 	seq_add_to(error, 7);
@@ -49,19 +48,24 @@ int main(void)
 		
 	while(1)
 	{
-		int level = 3, input, running = 0, comparison, game_on = 1 ;
+		int level = 3, input, running = 0, comparison, game_on = 1;
+		
+		// set up sequence struct
 		seq_t game_sequence = seq_create(20);
 		for (i = 0 ; i < level ; i++)
 		{ 
 			seq_add_to(game_sequence, rand() % 8);
 		}
 		
+		// set up board struct
 		PORTA = 0xff;
 		board_t board = board_create(&PORTA, &DDRA, &PINB, &DDRB);
 		
+		// welcome
 		seq_display(welcome, board, 7, 0);
 		board_wait_for_button_press(board);
 		
+		// game
 		while(game_on == 1)
 		{
 			seq_display(game_sequence, board, 10, 1);
